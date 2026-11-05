@@ -1,0 +1,68 @@
+prfmodel.stimuli.CFStimulus
+===========================
+
+.. py:class:: prfmodel.stimuli.CFStimulus
+
+
+
+   Container for a connective field stimulus distance matrix and source response.
+
+   :param distance_matrix: A matrix with distances between source units.
+   :type distance_matrix: numpy.ndarray
+   :param source_response: Array with responses for each source unit with shape `(num_units, num_frames)`. `num_units` is the number of
+                           source units and `num_frames` the number of time frames for each source response. `num_units` must match the
+                           number of rows and columns in `distance_matrix`.
+   :type source_response: numpy.ndarray
+
+   :raises ShapeError: If the distance matrix is not a square 2D matrix.
+   :raises ShapeMismatchError: If the source response has a first dimension with a different size than the number of rows or columns in the
+       distance matrix.
+
+   .. rubric:: Examples
+
+   >>> import numpy as np
+   >>> num_vertices, num_frames = 10, 20
+   >>> distance_matrix = np.zeros((num_vertices, num_vertices))
+   >>> source_response = np.ones((num_vertices, num_frames))
+   >>> stimulus = CFStimulus(distance_matrix=distance_matrix, source_response=source_response)
+   >>> print(stimulus.distance_matrix.shape)
+   (10, 10)
+   >>> print(stimulus.source_response.shape)
+   (10, 20)
+
+
+   .. py:method:: __repr__() -> str
+
+      Create a round-trippable string representation of the stimulus object.
+
+
+
+   .. py:method:: __str__() -> str
+
+      Create a human-readable string representation of the stimulus object.
+
+
+
+   .. py:method:: to_tensors(dtype: str | None = None) -> CFStimulusTensors
+
+      Convert the stimulus arrays into backend tensors.
+
+      :param dtype: The dtype to convert the stimulus arrays to. If `None` (the default), uses the dtype from
+                    :func:`prfmodel.utils.get_dtype`.
+      :type dtype: str, optional
+
+      :returns: The stimulus arrays as tensors.
+      :rtype: CFStimulusTensors
+
+      .. rubric:: Examples
+
+      >>> import numpy as np
+      >>> stimulus = CFStimulus(
+      ...     distance_matrix=np.zeros((10, 10)),
+      ...     source_response=np.ones((10, 20)),
+      ... )
+      >>> tensors = stimulus.to_tensors("float32")
+      >>> print(tuple(tensors.source_response.shape))
+      (10, 20)
+
+

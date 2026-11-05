@@ -1,0 +1,972 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Important details" href="important_details.html"><link rel="prev" title="Installation" href="installation.html">
+
+    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+        <title>Getting started - prfmodel 0.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=45dbb535" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">prfmodel 0.2.0 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <span class="sidebar-brand-text">prfmodel 0.2.0 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="important_details.html">Important details</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="tutorials/index.html">Tutorials &amp; Examples</a><input aria-label="Toggle navigation of Tutorials &amp; Examples" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="tutorials/tutorials/index.html">Tutorials</a><input aria-label="Toggle navigation of Tutorials" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/tutorials/css_prf_simulated.html">How to fit a compressive spatial summation population receptive field model to simulated data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/tutorials/diff_gaussians_prf_simulated.html">How to fit a Difference of Gaussians population receptive field model to simulated data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/tutorials/div_norm_prf_simulated.html">How to fit a Divisive Normalization population receptive field model to simulated data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/tutorials/csf_simulated.html">How to fit a contrast sensitivity model to simulated data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/tutorials/regressors.html">Adding regressors to a model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/tutorials/custom_models.html">Creating a custom model</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="tutorials/examples/index.html">Examples</a><input aria-label="Toggle navigation of Examples" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/examples/prf_2d_fmri_visual.html">Fitting a 2D population receptive field model to fMRI data from a visual experiment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/examples/prf_1d_fmri_numerosity.html">Fitting a 1D population receptive field model to fMRI data from a numerosity experiment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/examples/prf_2d_ecog_visual.html">Comparing 2D population receptive field models on ECoG data from a visual experiment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/examples/cf_fmri_visual.html">Fitting a connective field model to fMRI data from a visual experiment</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="development/index.html">Development</a><input aria-label="Toggle navigation of Development" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="development/architecture.html">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development/backends.html">Backends</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="autoapi/index.html">API Reference</a><input aria-label="Toggle navigation of API Reference" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="autoapi/prfmodel/density/index.html">prfmodel.density</a><input aria-label="Toggle navigation of prfmodel.density" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/density/derivative_gamma_density.html">derivative_gamma_density</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/density/gamma_density.html">gamma_density</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/density/normal_density.html">normal_density</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/density/shifted_gamma_density.html">shifted_gamma_density</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="autoapi/prfmodel/examples/index.html">prfmodel.examples</a><input aria-label="Toggle navigation of prfmodel.examples" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/examples/ChecksumError.html">ChecksumError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/examples/Dataset.html">Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/examples/describe_dataset.html">describe_dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/examples/get_data_dir.html">get_data_dir</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/examples/list_datasets.html">list_datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/examples/load_1d_prf_lognumerosity_stimulus.html">load_1d_prf_lognumerosity_stimulus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/examples/load_2d_prf_bar_stimulus.html">load_2d_prf_bar_stimulus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/examples/load_dataset.html">load_dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/examples/read_matlab_tables.html">read_matlab_tables</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="autoapi/prfmodel/exceptions/index.html">prfmodel.exceptions</a><input aria-label="Toggle navigation of prfmodel.exceptions" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/exceptions/InvalidUnitsWarning.html">InvalidUnitsWarning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/exceptions/ResolutionMismatchWarning.html">ResolutionMismatchWarning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/exceptions/ShapeError.html">ShapeError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/exceptions/ShapeMismatchError.html">ShapeMismatchError</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="autoapi/prfmodel/fitters/index.html">prfmodel.fitters</a><input aria-label="Toggle navigation of prfmodel.fitters" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="autoapi/prfmodel/fitters/adapter/index.html">prfmodel.fitters.adapter</a><input aria-label="Toggle navigation of prfmodel.fitters.adapter" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/fitters/adapter/Adapter.html">Adapter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/fitters/adapter/ParameterConstraint.html">ParameterConstraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/fitters/adapter/ParameterTransform.html">ParameterTransform</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="autoapi/prfmodel/fitters/losses/index.html">prfmodel.fitters.losses</a><input aria-label="Toggle navigation of prfmodel.fitters.losses" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/fitters/losses/CorrelationLoss.html">CorrelationLoss</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/fitters/GridAlignmentWarning.html">GridAlignmentWarning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/fitters/GridFitter.html">GridFitter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/fitters/GridHistory.html">GridHistory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/fitters/LeastSquaresFitter.html">LeastSquaresFitter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/fitters/LeastSquaresHistory.html">LeastSquaresHistory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/fitters/SGDFitter.html">SGDFitter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/fitters/SGDHistory.html">SGDHistory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/fitters/grid_values_1d_prf.html">grid_values_1d_prf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/fitters/grid_values_2d_prf.html">grid_values_2d_prf</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="autoapi/prfmodel/impulse/index.html">prfmodel.impulse</a><input aria-label="Toggle navigation of prfmodel.impulse" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="autoapi/prfmodel/impulse/base/index.html">prfmodel.impulse.base</a><input aria-label="Toggle navigation of prfmodel.impulse.base" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/impulse/base/BaseImpulse.html">BaseImpulse</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="autoapi/prfmodel/impulse/defaults/index.html">prfmodel.impulse.defaults</a><input aria-label="Toggle navigation of prfmodel.impulse.defaults" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/impulse/defaults/default_two_gamma_impulse_glover_hrf.html">default_two_gamma_impulse_glover_hrf</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/impulse/defaults/default_two_gamma_impulse_spm_hrf.html">default_two_gamma_impulse_spm_hrf</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/impulse/DerivativeTwoGammaImpulse.html">DerivativeTwoGammaImpulse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/impulse/ShiftedGammaImpulse.html">ShiftedGammaImpulse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/impulse/SustainedImpulse.html">SustainedImpulse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/impulse/TransientImpulse.html">TransientImpulse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/impulse/TwoGammaImpulse.html">TwoGammaImpulse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/impulse/convolve_prf_impulse_response.html">convolve_prf_impulse_response</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="autoapi/prfmodel/models/index.html">prfmodel.models</a><input aria-label="Toggle navigation of prfmodel.models" class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="autoapi/prfmodel/models/base/index.html">prfmodel.models.base</a><input aria-label="Toggle navigation of prfmodel.models.base" class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/base/BaseCanonical.html">BaseCanonical</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/base/BaseStimulusEncoder.html">BaseStimulusEncoder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/base/BaseTuning.html">BaseTuning</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="autoapi/prfmodel/models/cf/index.html">prfmodel.models.cf</a><input aria-label="Toggle navigation of prfmodel.models.cf" class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="autoapi/prfmodel/models/cf/canonical/index.html">prfmodel.models.cf.canonical</a><input aria-label="Toggle navigation of prfmodel.models.cf.canonical" class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/prfmodel/models/cf/canonical/CanonicalCFModel.html">CanonicalCFModel</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/cf/CFStimulusEncoder.html">CFStimulusEncoder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/cf/GaussianCFModel.html">GaussianCFModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/cf/GaussianCFTuning.html">GaussianCFTuning</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="autoapi/prfmodel/models/compression/index.html">prfmodel.models.compression</a><input aria-label="Toggle navigation of prfmodel.models.compression" class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/compression/CompressiveEncoder.html">CompressiveEncoder</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="autoapi/prfmodel/models/csf/index.html">prfmodel.models.csf</a><input aria-label="Toggle navigation of prfmodel.models.csf" class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="autoapi/prfmodel/models/csf/canonical/index.html">prfmodel.models.csf.canonical</a><input aria-label="Toggle navigation of prfmodel.models.csf.canonical" class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" role="switch" type="checkbox"/><label for="toctree-checkbox-21"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/prfmodel/models/csf/canonical/CanonicalCSFModel.html">CanonicalCSFModel</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/csf/CSFModel.html">CSFModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/csf/CSFTuning.html">CSFTuning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/csf/predict_contrast_response.html">predict_contrast_response</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/csf/predict_contrast_sensitivity.html">predict_contrast_sensitivity</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="autoapi/prfmodel/models/prf/index.html">prfmodel.models.prf</a><input aria-label="Toggle navigation of prfmodel.models.prf" class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" role="switch" type="checkbox"/><label for="toctree-checkbox-22"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="autoapi/prfmodel/models/prf/canonical/index.html">prfmodel.models.prf.canonical</a><input aria-label="Toggle navigation of prfmodel.models.prf.canonical" class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" role="switch" type="checkbox"/><label for="toctree-checkbox-23"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/prfmodel/models/prf/canonical/CSTPRFModel.html">CSTPRFModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/prfmodel/models/prf/canonical/CanonicalPRFModel.html">CanonicalPRFModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/prfmodel/models/prf/canonical/CenterSurroundPRFModel.html">CenterSurroundPRFModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/prfmodel/models/prf/canonical/DelayedNormPRFModel.html">DelayedNormPRFModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/prfmodel/models/prf/canonical/DivNormPRFModel.html">DivNormPRFModel</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/CSTPRFModel.html">CSTPRFModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/DelayedNormGaussian2DPRFModel.html">DelayedNormGaussian2DPRFModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/DelayedNormPRFModel.html">DelayedNormPRFModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/DivNormGaussian2DPRFModel.html">DivNormGaussian2DPRFModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/DivNormPRFModel.html">DivNormPRFModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/DoG2DPRFModel.html">DoG2DPRFModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/Gaussian1DPRFModel.html">Gaussian1DPRFModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/Gaussian1DPRFTuning.html">Gaussian1DPRFTuning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/Gaussian2DCSSPRFModel.html">Gaussian2DCSSPRFModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/Gaussian2DCSTPRFModel.html">Gaussian2DCSTPRFModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/Gaussian2DPRFModel.html">Gaussian2DPRFModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/Gaussian2DPRFTuning.html">Gaussian2DPRFTuning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/PRFStimulusEncoder.html">PRFStimulusEncoder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/encode_prf_response.html">encode_prf_response</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/init_css_from_gaussian.html">init_css_from_gaussian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/init_cst_from_gaussian.html">init_cst_from_gaussian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/init_delayed_norm_from_gaussian.html">init_delayed_norm_from_gaussian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/init_div_norm_from_dog_css.html">init_div_norm_from_dog_css</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/init_dog_from_gaussian.html">init_dog_from_gaussian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/predict_gaussian_response.html">predict_gaussian_response</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="autoapi/prfmodel/plotting/index.html">prfmodel.plotting</a><input aria-label="Toggle navigation of prfmodel.plotting" class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" role="switch" type="checkbox"/><label for="toctree-checkbox-24"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/plotting/animate_2d_prf_stimulus.html">animate_2d_prf_stimulus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/plotting/plot_1d_prf_stimulus.html">plot_1d_prf_stimulus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/plotting/plot_2d_prf_centers.html">plot_2d_prf_centers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/plotting/plot_2d_prf_stimulus.html">plot_2d_prf_stimulus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/plotting/plot_csf_stimulus_curve.html">plot_csf_stimulus_curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/plotting/plot_csf_stimulus_design.html">plot_csf_stimulus_design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/plotting/plot_grid_parameter_distribution.html">plot_grid_parameter_distribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/plotting/plot_observed_predicted.html">plot_observed_predicted</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/plotting/plot_parameter_by_roi.html">plot_parameter_by_roi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/plotting/plot_r_squared_comparison.html">plot_r_squared_comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/plotting/plot_r_squared_hist.html">plot_r_squared_hist</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/plotting/plot_response_heatmap.html">plot_response_heatmap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/plotting/plot_surface_stat_map.html">plot_surface_stat_map</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="autoapi/prfmodel/protocols/index.html">prfmodel.protocols</a><input aria-label="Toggle navigation of prfmodel.protocols" class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" role="switch" type="checkbox"/><label for="toctree-checkbox-25"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/protocols/CompositeModelProtocol.html">CompositeModelProtocol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/protocols/ModelProtocol.html">ModelProtocol</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="autoapi/prfmodel/regressors/index.html">prfmodel.regressors</a><input aria-label="Toggle navigation of prfmodel.regressors" class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" role="switch" type="checkbox"/><label for="toctree-checkbox-26"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="autoapi/prfmodel/regressors/base/index.html">prfmodel.regressors.base</a><input aria-label="Toggle navigation of prfmodel.regressors.base" class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" role="switch" type="checkbox"/><label for="toctree-checkbox-27"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/regressors/base/BaseRegressors.html">BaseRegressors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/regressors/AdditiveRegressors.html">AdditiveRegressors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/regressors/ConvolvedRegressors.html">ConvolvedRegressors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/regressors/RegressorsList.html">RegressorsList</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="autoapi/prfmodel/scaling/index.html">prfmodel.scaling</a><input aria-label="Toggle navigation of prfmodel.scaling" class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" role="switch" type="checkbox"/><label for="toctree-checkbox-28"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="autoapi/prfmodel/scaling/base/index.html">prfmodel.scaling.base</a><input aria-label="Toggle navigation of prfmodel.scaling.base" class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" role="switch" type="checkbox"/><label for="toctree-checkbox-29"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/scaling/base/BaseScaling.html">BaseScaling</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/scaling/Baseline.html">Baseline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/scaling/BaselineAmplitude.html">BaselineAmplitude</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="autoapi/prfmodel/stimuli/index.html">prfmodel.stimuli</a><input aria-label="Toggle navigation of prfmodel.stimuli" class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" role="switch" type="checkbox"/><label for="toctree-checkbox-30"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="autoapi/prfmodel/stimuli/base/index.html">prfmodel.stimuli.base</a><input aria-label="Toggle navigation of prfmodel.stimuli.base" class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" role="switch" type="checkbox"/><label for="toctree-checkbox-31"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/stimuli/base/Stimulus.html">Stimulus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/stimuli/base/StimulusTensors.html">StimulusTensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/stimuli/CFStimulus.html">CFStimulus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/stimuli/CFStimulusTensors.html">CFStimulusTensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/stimuli/CSFStimulus.html">CSFStimulus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/stimuli/CSFStimulusTensors.html">CSFStimulusTensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/stimuli/PRFStimulus.html">PRFStimulus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/stimuli/PRFStimulusTensors.html">PRFStimulusTensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/stimuli/Stimulus.html">Stimulus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/stimuli/StimulusTensors.html">StimulusTensors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/prfmodel/typing/index.html">prfmodel.typing</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="autoapi/prfmodel/utils/index.html">prfmodel.utils</a><input aria-label="Toggle navigation of prfmodel.utils" class="toctree-checkbox" id="toctree-checkbox-32" name="toctree-checkbox-32" role="switch" type="checkbox"/><label for="toctree-checkbox-32"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/utils/TensorFrame.html">TensorFrame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/utils/as_tensor_frame.html">as_tensor_frame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/utils/batched.html">batched</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/utils/calculate_eccentricity.html">calculate_eccentricity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/utils/calculate_polar_angle.html">calculate_polar_angle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/utils/calculate_r_squared.html">calculate_r_squared</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/utils/convert_parameters_to_tensor.html">convert_parameters_to_tensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/utils/get_dtype.html">get_dtype</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/utils/normalize_response.html">normalize_response</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="_sources/getting_started.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section class="tex2jax_ignore mathjax_ignore" id="getting-started">
+<h1>Getting started<a class="headerlink" href="#getting-started" title="Link to this heading">¶</a></h1>
+<p>This page gives a brief overview on how to fit a population receptive field (pRF) model to simulated data.</p>
+<p>A pRF model maps neural activity in a region of interest in the brain (e.g., V1 in the human visual cortex)
+to an experimental stimulus (e.g., a bar moving through the visual field). Here, we use the visual domain as an example,
+where the part of the visual field that stimulates activity in the region of interest is the pRF.</p>
+<section id="defining-the-stimulus">
+<h2>Defining the stimulus<a class="headerlink" href="#defining-the-stimulus" title="Link to this heading">¶</a></h2>
+<p>Let’s start with the first step: Defining the stimulus. We load an example stimulus that is included in the package.
+The stimulus simulates a bar moving in different directions through a two-dimensional visual field.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">prfmodel.examples</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_2d_prf_bar_stimulus</span>
+
+<span class="c1"># Print parameter DataFrames with three decimals</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.precision&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">stimulus</span> <span class="o">=</span> <span class="n">load_2d_prf_bar_stimulus</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stimulus</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PRFStimulus(design=array[170, 128, 128], grid=array[128, 128, 2], frame_duration=0.9, dimension_labels=[&#39;y&#39;, &#39;x&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<p>When printing the <code class="docutils literal notranslate"><span class="pre">stimulus</span></code> object, we can see that it has four attributes. The <code class="docutils literal notranslate"><span class="pre">design</span></code> attribute defines how
+the visual field changes over time. It has shape <code class="docutils literal notranslate"><span class="pre">(num_frames,</span> <span class="pre">height,</span> <span class="pre">width)</span></code>, where height and width define the number of pixels at which the visual field is recorded.
+The <code class="docutils literal notranslate"><span class="pre">grid</span></code> attribute maps each pixel to its coordinate in the visual field (i.e., the degree of visual angle). Its last
+axis follows the axes of the design, so <code class="docutils literal notranslate"><span class="pre">grid[...,</span> <span class="pre">0]</span></code> holds the vertical (<code class="docutils literal notranslate"><span class="pre">y</span></code>) coordinate and <code class="docutils literal notranslate"><span class="pre">grid[...,</span> <span class="pre">1]</span></code> the
+horizontal (<code class="docutils literal notranslate"><span class="pre">x</span></code>) coordinate. The <code class="docutils literal notranslate"><span class="pre">frame_duration</span></code> attribute is the duration of each frame in seconds (e.g., one TR),
+at which the model samples its impulse response, and <code class="docutils literal notranslate"><span class="pre">dimension_labels</span></code> names the grid axes.</p>
+</section>
+<section id="defining-the-prf-model">
+<h2>Defining the pRF model<a class="headerlink" href="#defining-the-prf-model" title="Link to this heading">¶</a></h2>
+<p>Now that we defined our stimulus, we can create a pRF model to predict a neural response to this stimulus in our
+(hypothetical) region of interest (e.g., V1). We use the most popular pRF model that is based on the seminal paper
+by Dumoulin and Wandell (2008).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Gaussian2DPRFModel</span></code> class performs all these steps to make a combined prediction.</p>
+<p><strong>Important</strong>: In prfmodel, we often need to add a custom impulse response model to match the sampling rate of predicted impulse responses to the sampling rate (i.e., TR) of observed data (the default in prfmodel is 1.0 seconds; see also the section <a class="reference internal" href="important_details.html"><span class="std std-doc">Important details</span></a>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">prfmodel.models.prf</span><span class="w"> </span><span class="kn">import</span> <span class="n">Gaussian2DPRFModel</span>
+
+<span class="n">prf_model</span> <span class="o">=</span> <span class="n">Gaussian2DPRFModel</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To simulate a neural response to our stimulus with our Gaussian 2D pRF model, we need to define a set of parameters.</p>
+<p>The list of parameters that need to be set to make model predictions can be obtained from the <code class="docutils literal notranslate"><span class="pre">parameter_names</span></code> property.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prf_model</span><span class="o">.</span><span class="n">parameter_names</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;mu_y&#39;,
+ &#39;mu_x&#39;,
+ &#39;sigma&#39;,
+ &#39;delay&#39;,
+ &#39;dispersion&#39;,
+ &#39;undershoot&#39;,
+ &#39;u_dispersion&#39;,
+ &#39;ratio&#39;,
+ &#39;weight_deriv&#39;,
+ &#39;baseline&#39;,
+ &#39;amplitude&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The parameters <code class="docutils literal notranslate"><span class="pre">mu_x</span></code>, <code class="docutils literal notranslate"><span class="pre">mu_y</span></code>, and <code class="docutils literal notranslate"><span class="pre">sigma</span></code> define the location and size of the predicted Gaussian pRF and are of primary interest.
+We simulate a pRF with its center at (-2.1, 1.45) and a size of 1.35. The parameters
+<code class="docutils literal notranslate"><span class="pre">delay</span></code>, <code class="docutils literal notranslate"><span class="pre">dispersion</span></code>, <code class="docutils literal notranslate"><span class="pre">undershoot</span></code>, <code class="docutils literal notranslate"><span class="pre">u_dispersion</span></code>, <code class="docutils literal notranslate"><span class="pre">ratio</span></code>, and <code class="docutils literal notranslate"><span class="pre">weight_deriv</span></code> determine the impulse response that is
+convolved with our pRF response. The two-gamma parameters (<code class="docutils literal notranslate"><span class="pre">delay</span></code>, <code class="docutils literal notranslate"><span class="pre">dispersion</span></code>,
+<code class="docutils literal notranslate"><span class="pre">undershoot</span></code>, <code class="docutils literal notranslate"><span class="pre">u_dispersion</span></code>, <code class="docutils literal notranslate"><span class="pre">ratio</span></code>) default to the Glover HRF parameter set
+(see <a class="reference internal" href="autoapi/prfmodel/impulse/defaults/default_two_gamma_impulse_glover_hrf.html#prfmodel.impulse.defaults.default_two_gamma_impulse_glover_hrf" title="prfmodel.impulse.defaults.default_two_gamma_impulse_glover_hrf"><code class="xref py py-func docutils literal notranslate"><span class="pre">default_two_gamma_impulse_glover_hrf()</span></code></a>),
+so we only set <code class="docutils literal notranslate"><span class="pre">weight_deriv</span></code> here. The parameters <code class="docutils literal notranslate"><span class="pre">baseline</span></code> and <code class="docutils literal notranslate"><span class="pre">amplitude</span></code> shift and scale our convolved
+response, respectively. We store the parameter values in a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> object.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">true_params</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;mu_x&quot;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">2.1</span><span class="p">],</span>
+        <span class="s2">&quot;mu_y&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.45</span><span class="p">],</span>
+        <span class="s2">&quot;sigma&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.35</span><span class="p">],</span>
+        <span class="s2">&quot;weight_deriv&quot;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">],</span>
+        <span class="s2">&quot;baseline&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">10.0</span><span class="p">],</span>
+        <span class="s2">&quot;amplitude&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.2</span><span class="p">],</span>
+    <span class="p">},</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using the “true” parameters, we simulate a response to our stimulus by making a prediction with our pRF model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">simulated_response</span> <span class="o">=</span> <span class="n">prf_model</span><span class="p">(</span><span class="n">stimulus</span><span class="p">,</span> <span class="n">true_params</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">simulated_response</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/6bbcc39c82789fd83bf67e419a5298214a8c3cf57449df2157254b55411f52bf.png" src="_images/6bbcc39c82789fd83bf67e419a5298214a8c3cf57449df2157254b55411f52bf.png" />
+</div>
+</div>
+<p>The predicted response contains increased activation followed by decreased activation compared to the baseline activity for each moving bar in our stimulus.</p>
+</section>
+<section id="fitting-the-prf-model">
+<h2>Fitting the pRF model<a class="headerlink" href="#fitting-the-prf-model" title="Link to this heading">¶</a></h2>
+<p>We will fit the pRF model to our simulated data using multiple stages. We begin with a grid search to find good
+starting values for our parameters of interest (<code class="docutils literal notranslate"><span class="pre">mu_x</span></code>, <code class="docutils literal notranslate"><span class="pre">mu_y</span></code>, and <code class="docutils literal notranslate"><span class="pre">sigma</span></code>). Then, we use least squares to estimate the <code class="docutils literal notranslate"><span class="pre">baseline</span></code> and <code class="docutils literal notranslate"><span class="pre">amplitude</span></code> of
+our model. Finally, we use stochastic gradient descent (SGD) to finetune our model fits.</p>
+<p>Let’s start with the grid search by defining ranges of <code class="docutils literal notranslate"><span class="pre">mu_x</span></code>, <code class="docutils literal notranslate"><span class="pre">mu_y</span></code>, and <code class="docutils literal notranslate"><span class="pre">sigma</span></code> that we want to construct a grid
+of parameter values from. For all other parameters, we only provide a single value so that they will stay constant
+across the entire grid.</p>
+<p>Note that we set <code class="docutils literal notranslate"><span class="pre">baseline</span></code> to <code class="docutils literal notranslate"><span class="pre">0.0</span></code> and <code class="docutils literal notranslate"><span class="pre">amplitude</span></code> to <code class="docutils literal notranslate"><span class="pre">1.0</span></code> even though we simulated the data with a <code class="docutils literal notranslate"><span class="pre">baseline</span></code> of
+<code class="docutils literal notranslate"><span class="pre">10.0</span></code>. This difference is on purpose because, by default, the <code class="docutils literal notranslate"><span class="pre">GridFitter</span></code> minimizes the negative correlation between prediction and data, which is unaffected by the baseline and amplitude of the prediction. Any value works here, and we estimate
+both parameters properly with least squares in the next step.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">param_ranges</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;mu_x&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+    <span class="s2">&quot;mu_y&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+    <span class="s2">&quot;sigma&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+    <span class="s2">&quot;weight_deriv&quot;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">],</span>
+    <span class="s2">&quot;baseline&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">],</span>
+    <span class="s2">&quot;amplitude&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">],</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For all three parameters, we defined ranges of 10 values that will be used to construct the grid. That is, the
+grid search will evaluate all possible combinations of these values and return the combination that fits the simulated
+data best. This will result in a grid containing <span class="math notranslate nohighlight">\(10 \times 10 \times 10 = 1000\)</span> parameter combinations.</p>
+<p>Let’s construct the <code class="docutils literal notranslate"><span class="pre">GridFitter</span></code> and perform the grid search. Note that we set <code class="docutils literal notranslate"><span class="pre">batch_size=20</span></code> to let the <code class="docutils literal notranslate"><span class="pre">GridFitter</span></code>
+evaluate 20 parameter combinations at the same time (which saves us some memory).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">prfmodel.fitters</span><span class="w"> </span><span class="kn">import</span> <span class="n">GridFitter</span>
+
+<span class="n">grid_fitter</span> <span class="o">=</span> <span class="n">GridFitter</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">prf_model</span><span class="p">,</span>
+    <span class="n">stimulus</span><span class="o">=</span><span class="n">stimulus</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">grid_history</span><span class="p">,</span> <span class="n">grid_params</span> <span class="o">=</span> <span class="n">grid_fitter</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">simulated_response</span><span class="p">,</span>
+    <span class="n">parameter_values</span><span class="o">=</span><span class="n">param_ranges</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "4850bfe4d3154e03b1a329079043aa86"}</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_params</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mu_x</th>
+      <th>mu_y</th>
+      <th>sigma</th>
+      <th>weight_deriv</th>
+      <th>baseline</th>
+      <th>amplitude</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-2.333</td>
+      <td>1.667</td>
+      <td>1.611</td>
+      <td>-0.5</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We can see that the estimates for <code class="docutils literal notranslate"><span class="pre">mu_x</span></code>, <code class="docutils literal notranslate"><span class="pre">mu_y</span></code>, and <code class="docutils literal notranslate"><span class="pre">sigma</span></code> are one combination in our grid. However, because the
+grid did not contain the “true” parameters we used to simulate the original response, the estimates differ from the
+“true” parameters.</p>
+<p>Using the parameter estimates resulting from the grid search we can make model predictions and compare them against
+the original simulated response.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_pred_response</span> <span class="o">=</span> <span class="n">prf_model</span><span class="p">(</span><span class="n">stimulus</span><span class="p">,</span> <span class="n">grid_params</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">simulated_response</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;True&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid_pred_response</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Predicted (grid)&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/8ffa845b2f18cc03ad64b608e6801501e57eab7c6d6d45717d23d58762725e60.png" src="_images/8ffa845b2f18cc03ad64b608e6801501e57eab7c6d6d45717d23d58762725e60.png" />
+</div>
+</div>
+<p>We can see that the predicted response follows the shape of the original (true) response but still shows some deviation
+in the amplitude of the activation peaks and the baseline activation.</p>
+<p>Using least squares, we can estimate the baseline and amplitude parameters of our model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">prfmodel.fitters</span><span class="w"> </span><span class="kn">import</span> <span class="n">LeastSquaresFitter</span>
+
+<span class="n">ls_fitter</span> <span class="o">=</span> <span class="n">LeastSquaresFitter</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">prf_model</span><span class="p">,</span>
+    <span class="n">stimulus</span><span class="o">=</span><span class="n">stimulus</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">ls_history</span><span class="p">,</span> <span class="n">ls_params</span> <span class="o">=</span> <span class="n">ls_fitter</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">simulated_response</span><span class="p">,</span>
+    <span class="n">parameters</span><span class="o">=</span><span class="n">grid_params</span><span class="p">,</span>
+    <span class="n">slope_name</span><span class="o">=</span><span class="s2">&quot;amplitude&quot;</span><span class="p">,</span>  <span class="c1"># Names of parameters to be optimized with least squares</span>
+    <span class="n">intercept_name</span><span class="o">=</span><span class="s2">&quot;baseline&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">ls_params</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "a3687a3d6b534f9f918103cf6ddf8acd"}</script><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mu_x</th>
+      <th>mu_y</th>
+      <th>sigma</th>
+      <th>weight_deriv</th>
+      <th>baseline</th>
+      <th>amplitude</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-2.333</td>
+      <td>1.667</td>
+      <td>1.611</td>
+      <td>-0.5</td>
+      <td>8.913</td>
+      <td>1.522</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Looking at the parameters, we can see that the model compensates the deviation in the peaks by adjusting the
+<code class="docutils literal notranslate"><span class="pre">baseline</span></code> and <code class="docutils literal notranslate"><span class="pre">amplitude</span></code> parameters. We can also plot the predicted response.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ls_pred_response</span> <span class="o">=</span> <span class="n">prf_model</span><span class="p">(</span><span class="n">stimulus</span><span class="p">,</span> <span class="n">ls_params</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">simulated_response</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;True&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ls_pred_response</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Predicted (least-squares)&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/3b93825adfe552234c3f12bfe10d22b900eb7324c990687eee93a217525455cf.png" src="_images/3b93825adfe552234c3f12bfe10d22b900eb7324c990687eee93a217525455cf.png" />
+</div>
+</div>
+<p>To finetune our model fits, we use SGD to iteratively optimize model parameters using the gradient of a loss function
+that is computed between data and model predictions. The default loss function in prfmodel is the mean squared error.
+As initial parameters, we use the result from the grid search and least squares fit. We fix the parameters related to
+the impulse response to their initial values (which are the “true” values).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">prfmodel.fitters</span><span class="w"> </span><span class="kn">import</span> <span class="n">SGDFitter</span>
+
+<span class="n">sgd_fitter</span> <span class="o">=</span> <span class="n">SGDFitter</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">prf_model</span><span class="p">,</span>
+    <span class="n">stimulus</span><span class="o">=</span><span class="n">stimulus</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">sgd_history</span><span class="p">,</span> <span class="n">sgd_params</span> <span class="o">=</span> <span class="n">sgd_fitter</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">simulated_response</span><span class="p">,</span>
+    <span class="n">init_parameters</span><span class="o">=</span><span class="n">ls_params</span><span class="p">,</span>
+    <span class="n">fixed_parameters</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;weight_deriv&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "92b48007fe0a4a11ba93ae9d3f2d33c6"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "b1328e831d5c4abdbdb4a13b3c5a8a7c"}</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sgd_params</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mu_x</th>
+      <th>mu_y</th>
+      <th>sigma</th>
+      <th>weight_deriv</th>
+      <th>baseline</th>
+      <th>amplitude</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-2.101</td>
+      <td>1.452</td>
+      <td>1.353</td>
+      <td>-0.5</td>
+      <td>9.893</td>
+      <td>1.204</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We can plot the predicted model response and see that it matches the original simulated response almost perfectly.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sgd_pred_response</span> <span class="o">=</span> <span class="n">prf_model</span><span class="p">(</span><span class="n">stimulus</span><span class="p">,</span> <span class="n">sgd_params</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">simulated_response</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;True&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sgd_pred_response</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Predicted (SGD)&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/e9bb6575fcddc2fa0c02614b143bbd4d09a7a922b76ac56ec53b8b5443f0ed05.png" src="_images/e9bb6575fcddc2fa0c02614b143bbd4d09a7a922b76ac56ec53b8b5443f0ed05.png" />
+</div>
+</div>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
+<p>Dumoulin, S. O., &amp; Wandell, B. A. (2008). Population receptive field estimates in human visual cortex. <em>NeuroImage, 39</em>(2), 647–660. https://doi.org/10.1016/j.neuroimage.2007.09.034</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="important_details.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Important details</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="installation.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Installation</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2026, Netherlands eScience Center, Vrije Universiteit Amsterdam, Netherlands Institute for Neuroscience
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Getting started</a><ul>
+<li><a class="reference internal" href="#defining-the-stimulus">Defining the stimulus</a></li>
+<li><a class="reference internal" href="#defining-the-prf-model">Defining the pRF model</a></li>
+<li><a class="reference internal" href="#fitting-the-prf-model">Fitting the pRF model</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=938c9ccc"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script type="application/vnd.jupyter.widget-state+json">{"state": {"5fe0dfd076de4121b3698447df4b01e6": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "277b290092784c02a0e227a65dac913e": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "29abc2a40e00446a84784e2eeb0199ba": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "ProgressView", "bar_style": "success", "description": "", "description_allow_html": false, "layout": "IPY_MODEL_5fe0dfd076de4121b3698447df4b01e6", "max": 50.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_277b290092784c02a0e227a65dac913e", "tabbable": null, "tooltip": null, "value": 50.0}}, "20c6fbb07bd94961bcac8b7c421bd1c4": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "c92b8975b2534bd5ad9a78b1caae7334": {"model_name": "HTMLStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "background": null, "description_width": "", "font_size": null, "text_color": null}}, "160c9df98e604ef6b9b923378a835dd2": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "HTMLView", "description": "", "description_allow_html": false, "layout": "IPY_MODEL_20c6fbb07bd94961bcac8b7c421bd1c4", "placeholder": "\u200b", "style": "IPY_MODEL_c92b8975b2534bd5ad9a78b1caae7334", "tabbable": null, "tooltip": null, "value": "Processing\u2007parameter\u2007grid:\u2007100%"}}, "1289058902374e18850a255f16bb6b6d": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "a64cdbe7f0714fc888865d915b37b146": {"model_name": "HTMLStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "background": null, "description_width": "", "font_size": null, "text_color": null}}, "de92dc72658d4ca38ca51eea7f78d19c": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "HTMLView", "description": "", "description_allow_html": false, "layout": "IPY_MODEL_1289058902374e18850a255f16bb6b6d", "placeholder": "\u200b", "style": "IPY_MODEL_a64cdbe7f0714fc888865d915b37b146", "tabbable": null, "tooltip": null, "value": "\u200750/50\u2007[00:01&lt;00:00,\u200741.15it/s,\u2007loss=-0.998]"}}, "9cce095d3794469fb48a5067e5c2ebbd": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "4850bfe4d3154e03b1a329079043aa86": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_160c9df98e604ef6b9b923378a835dd2", "IPY_MODEL_29abc2a40e00446a84784e2eeb0199ba", "IPY_MODEL_de92dc72658d4ca38ca51eea7f78d19c"], "layout": "IPY_MODEL_9cce095d3794469fb48a5067e5c2ebbd", "tabbable": null, "tooltip": null}}, "89fd7bfce282409eb6a175b8acc488b6": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "3a828c11b0074b2684214e19d0062db6": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "886b36492a074b46b9078057c843bacd": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "ProgressView", "bar_style": "success", "description": "", "description_allow_html": false, "layout": "IPY_MODEL_89fd7bfce282409eb6a175b8acc488b6", "max": 1.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_3a828c11b0074b2684214e19d0062db6", "tabbable": null, "tooltip": null, "value": 1.0}}, "4bc4b276daaa4379835440004f29c4e7": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "df92157c15544442846679428b210fd9": {"model_name": "HTMLStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "background": null, "description_width": "", "font_size": null, "text_color": null}}, "8a09d47d2daa4f63ba45aa2b9e4b248a": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "HTMLView", "description": "", "description_allow_html": false, "layout": "IPY_MODEL_4bc4b276daaa4379835440004f29c4e7", "placeholder": "\u200b", "style": "IPY_MODEL_df92157c15544442846679428b210fd9", "tabbable": null, "tooltip": null, "value": "Processing\u2007data\u2007batches:\u2007100%"}}, "8165686a1839419c8544c476727f9313": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "beabe16898b043b492427e66f1aa553d": {"model_name": "HTMLStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "background": null, "description_width": "", "font_size": null, "text_color": null}}, "6f0491fe27aa4ce4bdab101b9cd7ec7f": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "HTMLView", "description": "", "description_allow_html": false, "layout": "IPY_MODEL_8165686a1839419c8544c476727f9313", "placeholder": "\u200b", "style": "IPY_MODEL_beabe16898b043b492427e66f1aa553d", "tabbable": null, "tooltip": null, "value": "\u20071/1\u2007[00:00&lt;00:00,\u200723.61it/s]"}}, "669e3fa4f5f846fc86e4b1c23d7ff151": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "a3687a3d6b534f9f918103cf6ddf8acd": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_8a09d47d2daa4f63ba45aa2b9e4b248a", "IPY_MODEL_886b36492a074b46b9078057c843bacd", "IPY_MODEL_6f0491fe27aa4ce4bdab101b9cd7ec7f"], "layout": "IPY_MODEL_669e3fa4f5f846fc86e4b1c23d7ff151", "tabbable": null, "tooltip": null}}, "1313cd8e381b4933a760822c7eb5f294": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "c5024de771ca4f1c875bd0fa42deb32b": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "249dffe530604a4897a486a506b4cbe0": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "ProgressView", "bar_style": "success", "description": "", "description_allow_html": false, "layout": "IPY_MODEL_1313cd8e381b4933a760822c7eb5f294", "max": 1.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_c5024de771ca4f1c875bd0fa42deb32b", "tabbable": null, "tooltip": null, "value": 1.0}}, "3c10e931f4214c61a18b793d0da9efe8": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "660f0226ad484bad8ae7ea206fdef4a2": {"model_name": "HTMLStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "background": null, "description_width": "", "font_size": null, "text_color": null}}, "a69eb9f6362a4643bbd367fdbe739359": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "HTMLView", "description": "", "description_allow_html": false, "layout": "IPY_MODEL_3c10e931f4214c61a18b793d0da9efe8", "placeholder": "\u200b", "style": "IPY_MODEL_660f0226ad484bad8ae7ea206fdef4a2", "tabbable": null, "tooltip": null, "value": "Processing\u2007data\u2007batches:\u2007100%"}}, "4ce18e5a7ef44cb2ad2fb2380b91d6d4": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "5ce0096e66584a81ab446934a45e5b6d": {"model_name": "HTMLStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "background": null, "description_width": "", "font_size": null, "text_color": null}}, "1f6fddab12da409684a14705bdf897ec": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "HTMLView", "description": "", "description_allow_html": false, "layout": "IPY_MODEL_4ce18e5a7ef44cb2ad2fb2380b91d6d4", "placeholder": "\u200b", "style": "IPY_MODEL_5ce0096e66584a81ab446934a45e5b6d", "tabbable": null, "tooltip": null, "value": "\u20071/1\u2007[00:41&lt;00:00,\u200741.05s/it]"}}, "0ee110745df04d02a3e587903932ac7e": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "92b48007fe0a4a11ba93ae9d3f2d33c6": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_a69eb9f6362a4643bbd367fdbe739359", "IPY_MODEL_249dffe530604a4897a486a506b4cbe0", "IPY_MODEL_1f6fddab12da409684a14705bdf897ec"], "layout": "IPY_MODEL_0ee110745df04d02a3e587903932ac7e", "tabbable": null, "tooltip": null}}, "bb6b0b59b26c4cf5a2e8cfb589bee59a": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "a37076f66417404fa33e90ddf6e59524": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "1053bf64a6da4ffd8142b0b47576a034": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "ProgressView", "bar_style": "", "description": "", "description_allow_html": false, "layout": "IPY_MODEL_bb6b0b59b26c4cf5a2e8cfb589bee59a", "max": 1000.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_a37076f66417404fa33e90ddf6e59524", "tabbable": null, "tooltip": null, "value": 1000.0}}, "f74afcae7b474d3d84466f0afe4c2bff": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "3256bcbbee08478eb60b0d4d027e1801": {"model_name": "HTMLStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "background": null, "description_width": "", "font_size": null, "text_color": null}}, "504e3e84e3a74f07a2e759dd604293e3": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "HTMLView", "description": "", "description_allow_html": false, "layout": "IPY_MODEL_f74afcae7b474d3d84466f0afe4c2bff", "placeholder": "\u200b", "style": "IPY_MODEL_3256bcbbee08478eb60b0d4d027e1801", "tabbable": null, "tooltip": null, "value": "Optimizing\u2007batch:\u2007100%"}}, "cab585cc0c0c4fb48f74e8033a5594d3": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "b422509b620743c9994553318ded55f2": {"model_name": "HTMLStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "background": null, "description_width": "", "font_size": null, "text_color": null}}, "4e4ccdcc5077486eb87222026747ed1a": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "HTMLView", "description": "", "description_allow_html": false, "layout": "IPY_MODEL_cab585cc0c0c4fb48f74e8033a5594d3", "placeholder": "\u200b", "style": "IPY_MODEL_b422509b620743c9994553318ded55f2", "tabbable": null, "tooltip": null, "value": "\u2007999/1000\u2007[00:40&lt;00:00,\u200723.60it/s,\u2007loss=1.35]"}}, "27997c4ba61f4c5885c9324a2580f435": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": "hidden", "width": null}}, "b1328e831d5c4abdbdb4a13b3c5a8a7c": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_504e3e84e3a74f07a2e759dd604293e3", "IPY_MODEL_1053bf64a6da4ffd8142b0b47576a034", "IPY_MODEL_4e4ccdcc5077486eb87222026747ed1a"], "layout": "IPY_MODEL_27997c4ba61f4c5885c9324a2580f435", "tabbable": null, "tooltip": null}}}, "version_major": 2, "version_minor": 0}</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script crossorigin="anonymous" data-jupyter-widgets-cdn="https://cdn.jsdelivr.net/npm/" src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@1.0.6/dist/embed-amd.js"></script>
+    </body>
+</html>

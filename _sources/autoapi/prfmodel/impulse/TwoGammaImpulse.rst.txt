@@ -1,0 +1,262 @@
+prfmodel.impulse.TwoGammaImpulse
+================================
+
+.. py:class:: prfmodel.impulse.TwoGammaImpulse(duration: float = 32.0, offset: float = 0.0, resolution: float | None = None, norm: str | None = 'sum', default_parameters: dict[str, float] | str | None = 'glover_hrf')
+
+
+
+   Weighted difference of two gamma distributions impulse model.
+
+   Predicts an impulse response that is the weighted difference of two gamma distributions.
+   The model has five parameters: `delay` and `undershoot` are the mean times (in seconds) of the positive and
+   negative components of the response, while `dispersion` and `u_dispersion` are the scale parameters of the two
+   gamma distributions. The `ratio` parameter indicates the weight of the second gamma distribution.
+
+   :param duration: The duration of the impulse response (in seconds).
+   :type duration: float, default=32.0
+   :param offset: The offset of the impulse response (in seconds).
+   :type offset: float, default=0.0
+   :param resolution: The time resolution of the impulse response (in seconds), that is the interval between two points at
+                      which the impulse response function is evaluated. If `None` (the default), a canonical model samples the
+                      impulse response at the frame duration of its stimulus, and the impulse response is sampled at
+                      :data:`~prfmodel.impulse.base.DEFAULT_RESOLUTION` (1 second) when the impulse model is used on its own.
+                      See :meth:`~prfmodel.impulse.base.BaseImpulse.at_resolution`.
+   :type resolution: float, optional
+   :param norm: The normalization of the response. Can be `"sum"` (default), `"mean"`, `"max"`, `"norm"`, or
+                `None`. If `None`, no normalization is performed. See :doc:`Important details </important_details>`.
+   :type norm: str, optional, default="sum"
+   :param default_parameters: Dictionary with scalar default parameter values or name of default parameter set. Available default
+                              parameter sets are `glover_hrf` (default) and `spm_hrf`. See :mod:`~prfmodel.impulse.defaults` for
+                              details. Dictionary keys must be valid parameter names. Default values are overridden by user-supplied
+                              parameters in the :meth:`__call__` method.
+   :type default_parameters: dict of float or str, optional, default="glover_hrf"
+
+   .. seealso::
+
+      :py:obj:`gamma_density`
+          Density of the gamma distribution.
+
+   .. rubric:: Notes
+
+   The predicted impulse response at time :math:`t` with :math:`\alpha_1 = delay / dispersion`,
+   :math:`\theta_1 = dispersion`, :math:`\alpha_2  = undershoot / u\_dispersion`,
+   :math:`\theta_2 = u\_dispersion`, and :math:`\omega = ratio` is:
+
+   .. math::
+
+       f(t) = f_{\text{gamma}}(t; \alpha_1, \theta_1) - \omega f_{\text{gamma}}(t; \alpha_2, \theta_2)
+
+   `dispersion` is the gamma **scale**, following the convention used by SPM, nilearn and Glover.
+   Consequently the mean of the first component is exactly `delay` seconds and that of the second exactly
+   `undershoot` seconds, and both parameters are directly comparable with values reported for other software.
+
+   .. rubric:: References
+
+   .. [1] Boynton, G. M., Engel, S. A., Glover, G. H., & Heeger, D. J. (1996). Linear systems analysis of functional
+       magnetic resonance imaging in human V1. *The Journal of Neuroscience*, 16(13), 4207-4221.
+       https://doi.org/10.1523/JNEUROSCI.16-13-04207.1996
+   .. [2] Friston, K. J., Fletcher, P., Josephs, O., Holmes, A., Rugg, M. D., & Turner, R. (1998). Event-related fMRI:
+       Characterizing differential responses. *NeuroImage*, 7(1), 30-40. https://doi.org/10.1006/nimg.1997.0306
+   .. [3] Glover, G. H. (1999). Deconvolution of impulse response in event-related BOLD fMRI. *NeuroImage*, 9(4),
+       416-429. https://doi.org/10.1006/nimg.1998.0419
+
+   .. rubric:: Examples
+
+   Predict an impulse response using the default parameter set
+   (:func:`~prfmodel.impulse.defaults.default_two_gamma_impulse_glover_hrf()`). An empty :class:`pandas.DataFrame`
+   still must be supplied to :meth:`__call__` to indicate the number of units for which a response should be
+   predicted.
+
+   >>> import pandas as pd
+   >>> impulse_model = TwoGammaImpulse()
+   >>> params = pd.DataFrame(index=range(3))  # Predict for 3 units
+   >>> resp = impulse_model(params)
+   >>> print(resp.shape)  # (num_units, num_frames)
+   (3, 32)
+
+   Predict an impulse response by overriding the default parameter set in the :meth:`__call__` method.
+
+   >>> import pandas as pd
+   >>> params = pd.DataFrame({
+   ...     "delay": [2.0, 1.0, 1.5],
+   ...     "dispersion": [1.0, 1.0, 1.0],
+   ...     "undershoot": [1.5, 2.0, 1.0],
+   ...     "u_dispersion": [1.0, 1.0, 1.0],
+   ...     "ratio": [0.7, 0.2, 0.5],
+   ... })
+   >>> resp = impulse_model(params)
+   >>> print(resp.shape)  # (num_units, num_frames)
+   (3, 32)
+
+   If ``default_parameters=None``, all parameters must be supplied to :meth:`__call__`.
+
+   >>> impulse_model = TwoGammaImpulse(
+   ...     default_parameters=None,
+   ... )
+   >>> resp = impulse_model(params)
+   >>> print(resp.shape)  # (num_units, num_frames)
+   (3, 32)
+
+
+   .. py:method:: __call__(parameters: pandas.DataFrame, dtype: str | None = None) -> numpy.ndarray
+
+      Compute the impulse response.
+
+      This is the public entry point. It merges :attr:`default_parameters` into `parameters`, validates the
+      result, converts it to tensors and delegates to :meth:`call`, then returns the result as a
+      :class:`numpy.ndarray`. Subclasses implement :meth:`call`. Use :meth:`call` when a backend tensor is
+      required.
+
+      :param parameters: Dataframe with columns containing different model parameters and rows containing parameter values
+                         for different units. Parameter values override default parameters.
+      :type parameters: pandas.DataFrame
+      :param dtype: The dtype of the prediction result. If `None` (the default), uses the dtype from
+                    :func:`prfmodel.utils.get_dtype`.
+      :type dtype: str, optional
+
+      :returns: The predicted model response with shape `(num_units, num_frames)` and dtype `dtype`.
+      :rtype: numpy.ndarray
+
+      :raises ValueError: If `parameters` is missing one or more of :attr:`parameter_names`.
+
+
+
+   .. py:method:: at_resolution(resolution: float) -> BaseImpulse
+
+      Get the impulse model sampled at a time resolution unless it has an explicit resolution.
+
+      Canonical models call this method with the frame duration of their stimulus, so that an impulse model
+      without an explicit :attr:`resolution` is sampled at the same rate as the stimulus.
+
+      :param resolution: The time resolution (in seconds) to sample the impulse response at if :attr:`resolution` is `None`.
+      :type resolution: float
+
+      :returns: The impulse model itself if :attr:`resolution` is set. Otherwise, a copy of the impulse model with
+                `resolution` as its time resolution. The copy is created once per resolution and reused afterwards.
+      :rtype: BaseImpulse
+
+      .. rubric:: Examples
+
+      >>> from prfmodel.impulse import TwoGammaImpulse
+      >>> impulse_model = TwoGammaImpulse()
+      >>> impulse_model.at_resolution(1.5).resolution
+      1.5
+      >>> impulse_model.resolution is None
+      True
+      >>> TwoGammaImpulse(resolution=0.5).at_resolution(1.5).resolution
+      0.5
+
+
+
+   .. py:method:: call(parameters: prfmodel.utils.TensorFrame) -> prfmodel.typing.Tensor
+
+      Predict the impulse response.
+
+      :param parameters: Model parameters as tensors, supporting the same column selection as a :class:`pandas.DataFrame`. :attr:`default_parameters` must already be merged in.
+      :type parameters: TensorFrame
+
+      :returns: The predicted impulse response with shape `(num_units, num_frames)`.
+      :rtype: :data:`prfmodel.typing.Tensor`
+
+
+
+   .. py:method:: check_parameter_names(parameters: pandas.DataFrame) -> None
+
+      Check that required parameter names are supplied.
+
+      If not already present, adds default parameter columns to ``parameters``.
+
+      :param parameters: Dataframe with columns containing different model parameters and rows containing parameter values
+                         for different units.
+      :type parameters: pandas.DataFrame
+
+      :raises ValueError: When a parameter name in the :attr:`parameters_names` attribute is not a column in ``parameters``.
+
+
+
+   .. py:method:: check_parameter_values(parameters: pandas.DataFrame) -> None
+
+      Check that the parameter values lie inside the domain the model is defined on.
+
+      If not already present, adds default parameter columns to ``parameters``.
+
+      :param parameters: Dataframe with columns containing different model parameters and rows containing parameter values
+                         for different units.
+      :type parameters: pandas.DataFrame
+
+      :raises ValueError: When a parameter that must be ``> 0`` is zero or negative.
+
+
+
+   .. py:method:: get_consumed_parameter_names(parameters: pandas.DataFrame) -> list[str]
+
+      Return the parameter names the model reads from ``parameters``.
+
+      A name covered by :attr:`default_parameters` is only read when the caller supplies a column for it;
+      otherwise the default is merged in further down and the column would be absent here.
+
+      :param parameters: Dataframe with columns containing different model parameters and rows containing parameter values
+                         for different units.
+      :type parameters: pandas.DataFrame
+
+      :returns: Names of the parameters the model reads from ``parameters``.
+      :rtype: list of str
+
+
+
+   .. py:method:: get_frames(dtype: str | None = None) -> prfmodel.typing.Tensor
+
+      Build the time frames at which the impulse response function is evaluated.
+
+      :param dtype: The dtype of the prediction result. If `None` (the default), uses the dtype from
+                    :func:`prfmodel.utils.get_dtype`.
+      :type dtype: str, optional
+
+      :returns: Time frames of shape `(1, num_frames)` and dtype `dtype`. The first frame is at
+                `offset` and frames are spaced `resolution` apart (or :data:`DEFAULT_RESOLUTION` apart if
+                `resolution` is `None`).
+      :rtype: :data:`prfmodel.typing.Tensor`
+
+      .. rubric:: Notes
+
+      The time frames are cached as a `numpy.ndarray` rather than as a backend tensor, and converted on every
+      call.
+
+
+
+   .. py:property:: duration
+      :type: float
+
+
+      The duration of the impulse response (in seconds). Read-only.
+
+
+   .. py:property:: num_frames
+      :type: int
+
+
+      The total number of time frames at which the impulse response function is evaluated.
+
+
+   .. py:property:: offset
+      :type: float
+
+
+      The offset of the impulse response (in seconds). Read-only.
+
+
+   .. py:property:: parameter_names
+      :type: list[str]
+
+
+      `delay`, `dispersion`, `undershoot`, `u_dispersion`, `ratio`.
+
+      :type: Parameter names are
+
+
+   .. py:property:: resolution
+      :type: float | None
+
+
+      The time resolution of the impulse response (in seconds) or `None` if it is not set. Read-only.
+

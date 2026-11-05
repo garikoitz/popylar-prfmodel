@@ -1,0 +1,68 @@
+prfmodel.stimuli.CSFStimulus
+============================
+
+.. py:class:: prfmodel.stimuli.CSFStimulus
+
+
+
+   Container for a contrast sensitivity function stimulus.
+
+   :param sf: Spatial frequency at each time frame, with shape ``(num_frames,)``. Blank frames can have a spatial frequency
+              of zero.
+   :type sf: numpy.ndarray
+   :param contrast: Michelson contrast in percent (0 to 100) at each time frame, with shape ``(num_frames,)``. Contrast given as
+                    a fraction (0 to 1) is interpreted as 0 to 1 percent.
+   :type contrast: numpy.ndarray
+   :param frame_duration: The duration of one time frame (in seconds), e.g., the repetition time (TR) in fMRI. Must be given
+                          as a keyword argument. Canonical models sample their impulse models at this interval unless the
+                          impulse model has an explicit `resolution`. See :doc:`Important details </important_details>`.
+   :type frame_duration: float
+
+   :raises CSFStimulusDimensionError: If ``sf`` or ``contrast`` is not one-dimensional.
+   :raises CSFStimulusShapeError: If ``sf`` and ``contrast`` do not have the same shape.
+   :raises ValueError: If ``frame_duration`` is not positive.
+
+   .. rubric:: Examples
+
+   Create a CSF stimulus with four frames:
+
+   >>> import numpy as np
+   >>> sf = np.array([1.0, 3.0, 6.0, 12.0])
+   >>> contrast = np.array([10.0, 20.0, 40.0, 80.0])  # Michelson contrast in percent
+   >>> stimulus = CSFStimulus(sf=sf, contrast=contrast, frame_duration=1.5)
+   >>> print(stimulus)
+   CSFStimulus(sf=array[4], contrast=array[4], frame_duration=1.5)
+
+
+   .. py:method:: __repr__() -> str
+
+      Create a round-trippable string representation of the stimulus object.
+
+
+
+   .. py:method:: __str__() -> str
+
+      Create a human-readable string representation of the stimulus object.
+
+
+
+   .. py:method:: to_tensors(dtype: str | None = None) -> CSFStimulusTensors
+
+      Convert the stimulus arrays into backend tensors.
+
+      :param dtype: The dtype to convert the stimulus arrays to. If `None` (the default), uses the dtype from
+                    :func:`prfmodel.utils.get_dtype`.
+      :type dtype: str, optional
+
+      :returns: The stimulus arrays as tensors.
+      :rtype: CSFStimulusTensors
+
+      .. rubric:: Examples
+
+      >>> import numpy as np
+      >>> stimulus = CSFStimulus(sf=np.array([1.0, 3.0]), contrast=np.array([10.0, 20.0]), frame_duration=1.0)
+      >>> tensors = stimulus.to_tensors("float32")
+      >>> print(tuple(tensors.sf.shape))
+      (2,)
+
+

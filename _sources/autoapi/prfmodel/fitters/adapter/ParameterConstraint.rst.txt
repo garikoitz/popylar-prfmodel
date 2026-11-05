@@ -1,0 +1,150 @@
+prfmodel.fitters.adapter.ParameterConstraint
+============================================
+
+.. py:class:: prfmodel.fitters.adapter.ParameterConstraint(parameter_names: collections.abc.Sequence[str], lower: str | float | None = None, upper: str | float | None = None, bound_fun: collections.abc.Callable | None = None)
+
+
+
+   Constrain parameters to lower or upper bounds.
+
+   Maps a bounded parameter onto an unbounded scale that a gradient-based optimizer can explore freely, and maps it
+   back onto the bounded scale to make model predictions. :meth:`transform` takes a value on the natural (bounded)
+   scale and returns its unbounded counterpart; :meth:`inverse` does the reverse. This is the same direction
+   convention as :class:`ParameterTransform`, and it is what makes the bound hold: because :meth:`inverse` is
+   applied before every model prediction, the model can only ever see values that satisfy the constraint, no matter
+   where the optimizer moves.
+
+   :param parameter_names: Names of parameters to be transformed.
+   :type parameter_names: Sequence of str
+   :param lower: Lower bound of parameter constraint. If the argument has type `str`, it will use another parameter as the
+                 dynamic lower bound. An argument of type `float` will be used as a static lower bound.
+   :type lower: str or float, optional
+   :param upper: Upper bound of parameter constraint. If the argument has type `str`, it will use another parameter as the
+                 dynamic upper bound. An argument of type `float` will be used as a static upper bound.
+   :type upper: str or float, optional
+   :param bound_fun: Function to apply to the lower or upper bound before applying the constraint.
+   :type bound_fun: Callable, optional
+
+   :raises NotImplementedError: When both a lower and upper bound are specified.
+
+   .. rubric:: Notes
+
+   Instances of this class can be used inside an :class:`~prfmodel.fitters.adapter.Adapter` object to constrain
+   specific parameters during model fitting using an exponential transformation. With a lower bound :math:`L`, the
+   two directions are:
+
+   .. math::
+
+       \mathrm{transform}(x) = \log(x - L), \qquad \mathrm{inverse}(u) = e^{u} + L
+
+   and with an upper bound :math:`U`:
+
+   .. math::
+
+       \mathrm{transform}(x) = -\log(U - x), \qquad \mathrm{inverse}(u) = -e^{-u} + U
+
+   The bound is **open**: :meth:`transform` requires values that strictly satisfy the constraint and raises a
+   :class:`ValueError` otherwise, because a value sitting exactly on the bound has no finite counterpart on the
+   unbounded scale. Initial values must therefore be chosen strictly inside the bound, not on it.
+
+   :meth:`inverse` is total: every finite input maps to a value satisfying the bound, which is what lets an
+   optimizer explore freely without ever handing the model an invalid parameter. Note that in finite precision the
+   exponential eventually underflows relative to the bound, so a value far enough out rounds onto the bound exactly
+   rather than merely approaching it (beyond roughly 15 units for a bound of order 1 in `float32`). The bound is
+   never crossed, but a parameter can become numerically equal to it, so a lower bound of exactly ``0.0`` on a
+   parameter that is divided by, such as a Gaussian width, is better set to a small positive value.
+
+   .. rubric:: Examples
+
+   Constrain a parameter to be greater than another parameter.
+
+   >>> import numpy as np
+   >>> import pandas as pd
+   >>> params = pd.DataFrame({
+   ...     "x": np.array([0.5, 1.0, 1.5]),
+   ...     "lower_bound": np.array([0.1, 0.2, 0.3])
+   ... })
+   >>> constraint = ParameterConstraint(
+   ...     parameter_names=["x"],
+   ...     lower="lower_bound",
+   ... )
+   >>> params_transformed = constraint.transform(params)
+   >>> params_inverse = constraint.inverse(params_transformed)
+   >>> assert np.allclose(params_inverse["x"], params["x"])
+
+   Constrain a parameter to be greater than a fixed value.
+
+   >>> constraint = ParameterConstraint(
+   ...     parameter_names=["x"],
+   ...     lower=0.0,
+   ... )
+   >>> params_transformed = constraint.transform(params)
+   >>> params_inverse = constraint.inverse(params_transformed)
+   >>> assert np.allclose(params_inverse["x"], params["x"])
+
+   The transformed values are unbounded, and mapping any of them back always satisfies the constraint. This is what
+   an optimizer relies on: it can propose any real number and still yield a valid parameter.
+
+   >>> anywhere = pd.DataFrame({"x": np.array([-50.0, 0.0, 50.0])})
+   >>> bool(np.all(constraint.inverse(anywhere)["x"] > 0.0))
+   True
+
+   Constrain a parameter to be greater than the square of another parameter.
+
+   >>> constraint = ParameterConstraint(
+   ...     parameter_names=["x"],
+   ...     lower="lower_bound",
+   ...     bound_fun=lambda x: x**2
+   ... )
+   >>> params_transformed = constraint.transform(params)
+   >>> params_inverse = constraint.inverse(params_transformed)
+   >>> assert np.allclose(params_inverse["x"], params["x"])
+
+
+   .. py:method:: inverse(parameters: P, dtype: str | None = None) -> P
+
+      Map unbounded parameters back onto the bounded natural scale.
+
+      Takes parameters on the unbounded scale the optimizer works on and returns their counterparts on the natural
+      scale, where the bound is guaranteed to hold for any finite input. This is the direction applied before every
+      model prediction, which is what enforces the constraint during fitting.
+
+      :param parameters: Dataframe with columns containing different model parameters and rows containing parameter values
+                         for different units.
+      :type parameters: pandas.DataFrame
+      :param dtype: The dtype of the prediction result. If `None` (the default), uses the dtype from
+                    :func:`prfmodel.utils.get_dtype`. A dataframe is converted column by column, so a dtype narrower than
+                    its values rounds every column, including the ones this transformation leaves untouched. Pass the dtype
+                    the caller computes in. Ignored for a :class:`~prfmodel.utils.TensorFrame`, which carries its own.
+      :type dtype: str, optional
+
+      :returns: Dataframe with the parameters in `parameter_names` mapped onto the natural scale, satisfying the bound.
+      :rtype: pd.DataFrame
+
+      :raises ValueError: If a dynamic bound is not a column in `parameters`.
+
+
+
+   .. py:method:: transform(parameters: P, dtype: str | None = None) -> P
+
+      Map bounded parameters onto the unbounded scale.
+
+      Takes parameters on their natural scale, where the bound holds, and returns their counterparts on the
+      unbounded scale that a gradient-based optimizer works on. Use :meth:`inverse` for the reverse direction.
+
+      :param parameters: Dataframe with columns containing different model parameters and rows containing parameter values
+                         for different units.
+      :type parameters: pandas.DataFrame
+      :param dtype: The dtype of the prediction result. If `None` (the default), uses the dtype from
+                    :func:`prfmodel.utils.get_dtype`. A dataframe is converted column by column, so a dtype narrower than
+                    its values rounds every column, including the ones this transformation leaves untouched. Pass the dtype
+                    the caller computes in. Ignored for a :class:`~prfmodel.utils.TensorFrame`, which carries its own.
+      :type dtype: str, optional
+
+      :returns: Dataframe with the parameters in `parameter_names` mapped onto the unbounded scale.
+      :rtype: pd.DataFrame
+
+      :raises ValueError: If a dynamic bound is not a column in `parameters`, or if any value in `parameter_names` lies on or
+          beyond its bound. The bound is open, so starting values must be strictly inside it.
+
+

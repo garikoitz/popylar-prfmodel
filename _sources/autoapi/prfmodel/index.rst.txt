@@ -1,0 +1,48 @@
+prfmodel
+========
+
+.. py:module:: prfmodel
+
+.. autoapi-nested-parse::
+
+   Documentation about prfmodel.
+
+
+
+Submodules
+----------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/prfmodel/density/index
+   /autoapi/prfmodel/examples/index
+   /autoapi/prfmodel/exceptions/index
+   /autoapi/prfmodel/fitters/index
+   /autoapi/prfmodel/impulse/index
+   /autoapi/prfmodel/models/index
+   /autoapi/prfmodel/plotting/index
+   /autoapi/prfmodel/protocols/index
+   /autoapi/prfmodel/regressors/index
+   /autoapi/prfmodel/scaling/index
+   /autoapi/prfmodel/stimuli/index
+   /autoapi/prfmodel/typing/index
+   /autoapi/prfmodel/utils/index
+
+.. autoapisummary::
+
+   prfmodel.density
+   prfmodel.examples
+   prfmodel.exceptions
+   prfmodel.fitters
+   prfmodel.impulse
+   prfmodel.models
+   prfmodel.plotting
+   prfmodel.protocols
+   prfmodel.regressors
+   prfmodel.scaling
+   prfmodel.stimuli
+   prfmodel.typing
+   prfmodel.utils
+
+

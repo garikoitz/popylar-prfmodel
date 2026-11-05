@@ -1,0 +1,766 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Tutorials &amp; Examples" href="tutorials/index.html"><link rel="prev" title="Getting started" href="getting_started.html">
+
+    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+        <title>Important details - prfmodel 0.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=45dbb535" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">prfmodel 0.2.0 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <span class="sidebar-brand-text">prfmodel 0.2.0 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Important details</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="tutorials/index.html">Tutorials &amp; Examples</a><input aria-label="Toggle navigation of Tutorials &amp; Examples" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="tutorials/tutorials/index.html">Tutorials</a><input aria-label="Toggle navigation of Tutorials" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/tutorials/css_prf_simulated.html">How to fit a compressive spatial summation population receptive field model to simulated data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/tutorials/diff_gaussians_prf_simulated.html">How to fit a Difference of Gaussians population receptive field model to simulated data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/tutorials/div_norm_prf_simulated.html">How to fit a Divisive Normalization population receptive field model to simulated data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/tutorials/csf_simulated.html">How to fit a contrast sensitivity model to simulated data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/tutorials/regressors.html">Adding regressors to a model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/tutorials/custom_models.html">Creating a custom model</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="tutorials/examples/index.html">Examples</a><input aria-label="Toggle navigation of Examples" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/examples/prf_2d_fmri_visual.html">Fitting a 2D population receptive field model to fMRI data from a visual experiment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/examples/prf_1d_fmri_numerosity.html">Fitting a 1D population receptive field model to fMRI data from a numerosity experiment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/examples/prf_2d_ecog_visual.html">Comparing 2D population receptive field models on ECoG data from a visual experiment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/examples/cf_fmri_visual.html">Fitting a connective field model to fMRI data from a visual experiment</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="development/index.html">Development</a><input aria-label="Toggle navigation of Development" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="development/architecture.html">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development/backends.html">Backends</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="autoapi/index.html">API Reference</a><input aria-label="Toggle navigation of API Reference" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="autoapi/prfmodel/density/index.html">prfmodel.density</a><input aria-label="Toggle navigation of prfmodel.density" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/density/derivative_gamma_density.html">derivative_gamma_density</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/density/gamma_density.html">gamma_density</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/density/normal_density.html">normal_density</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/density/shifted_gamma_density.html">shifted_gamma_density</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="autoapi/prfmodel/examples/index.html">prfmodel.examples</a><input aria-label="Toggle navigation of prfmodel.examples" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/examples/ChecksumError.html">ChecksumError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/examples/Dataset.html">Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/examples/describe_dataset.html">describe_dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/examples/get_data_dir.html">get_data_dir</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/examples/list_datasets.html">list_datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/examples/load_1d_prf_lognumerosity_stimulus.html">load_1d_prf_lognumerosity_stimulus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/examples/load_2d_prf_bar_stimulus.html">load_2d_prf_bar_stimulus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/examples/load_dataset.html">load_dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/examples/read_matlab_tables.html">read_matlab_tables</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="autoapi/prfmodel/exceptions/index.html">prfmodel.exceptions</a><input aria-label="Toggle navigation of prfmodel.exceptions" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/exceptions/InvalidUnitsWarning.html">InvalidUnitsWarning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/exceptions/ResolutionMismatchWarning.html">ResolutionMismatchWarning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/exceptions/ShapeError.html">ShapeError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/exceptions/ShapeMismatchError.html">ShapeMismatchError</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="autoapi/prfmodel/fitters/index.html">prfmodel.fitters</a><input aria-label="Toggle navigation of prfmodel.fitters" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="autoapi/prfmodel/fitters/adapter/index.html">prfmodel.fitters.adapter</a><input aria-label="Toggle navigation of prfmodel.fitters.adapter" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/fitters/adapter/Adapter.html">Adapter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/fitters/adapter/ParameterConstraint.html">ParameterConstraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/fitters/adapter/ParameterTransform.html">ParameterTransform</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="autoapi/prfmodel/fitters/losses/index.html">prfmodel.fitters.losses</a><input aria-label="Toggle navigation of prfmodel.fitters.losses" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/fitters/losses/CorrelationLoss.html">CorrelationLoss</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/fitters/GridAlignmentWarning.html">GridAlignmentWarning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/fitters/GridFitter.html">GridFitter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/fitters/GridHistory.html">GridHistory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/fitters/LeastSquaresFitter.html">LeastSquaresFitter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/fitters/LeastSquaresHistory.html">LeastSquaresHistory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/fitters/SGDFitter.html">SGDFitter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/fitters/SGDHistory.html">SGDHistory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/fitters/grid_values_1d_prf.html">grid_values_1d_prf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/fitters/grid_values_2d_prf.html">grid_values_2d_prf</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="autoapi/prfmodel/impulse/index.html">prfmodel.impulse</a><input aria-label="Toggle navigation of prfmodel.impulse" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="autoapi/prfmodel/impulse/base/index.html">prfmodel.impulse.base</a><input aria-label="Toggle navigation of prfmodel.impulse.base" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/impulse/base/BaseImpulse.html">BaseImpulse</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="autoapi/prfmodel/impulse/defaults/index.html">prfmodel.impulse.defaults</a><input aria-label="Toggle navigation of prfmodel.impulse.defaults" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/impulse/defaults/default_two_gamma_impulse_glover_hrf.html">default_two_gamma_impulse_glover_hrf</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/impulse/defaults/default_two_gamma_impulse_spm_hrf.html">default_two_gamma_impulse_spm_hrf</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/impulse/DerivativeTwoGammaImpulse.html">DerivativeTwoGammaImpulse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/impulse/ShiftedGammaImpulse.html">ShiftedGammaImpulse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/impulse/SustainedImpulse.html">SustainedImpulse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/impulse/TransientImpulse.html">TransientImpulse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/impulse/TwoGammaImpulse.html">TwoGammaImpulse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/impulse/convolve_prf_impulse_response.html">convolve_prf_impulse_response</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="autoapi/prfmodel/models/index.html">prfmodel.models</a><input aria-label="Toggle navigation of prfmodel.models" class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="autoapi/prfmodel/models/base/index.html">prfmodel.models.base</a><input aria-label="Toggle navigation of prfmodel.models.base" class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/base/BaseCanonical.html">BaseCanonical</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/base/BaseStimulusEncoder.html">BaseStimulusEncoder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/base/BaseTuning.html">BaseTuning</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="autoapi/prfmodel/models/cf/index.html">prfmodel.models.cf</a><input aria-label="Toggle navigation of prfmodel.models.cf" class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="autoapi/prfmodel/models/cf/canonical/index.html">prfmodel.models.cf.canonical</a><input aria-label="Toggle navigation of prfmodel.models.cf.canonical" class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/prfmodel/models/cf/canonical/CanonicalCFModel.html">CanonicalCFModel</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/cf/CFStimulusEncoder.html">CFStimulusEncoder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/cf/GaussianCFModel.html">GaussianCFModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/cf/GaussianCFTuning.html">GaussianCFTuning</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="autoapi/prfmodel/models/compression/index.html">prfmodel.models.compression</a><input aria-label="Toggle navigation of prfmodel.models.compression" class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/compression/CompressiveEncoder.html">CompressiveEncoder</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="autoapi/prfmodel/models/csf/index.html">prfmodel.models.csf</a><input aria-label="Toggle navigation of prfmodel.models.csf" class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="autoapi/prfmodel/models/csf/canonical/index.html">prfmodel.models.csf.canonical</a><input aria-label="Toggle navigation of prfmodel.models.csf.canonical" class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" role="switch" type="checkbox"/><label for="toctree-checkbox-21"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/prfmodel/models/csf/canonical/CanonicalCSFModel.html">CanonicalCSFModel</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/csf/CSFModel.html">CSFModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/csf/CSFTuning.html">CSFTuning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/csf/predict_contrast_response.html">predict_contrast_response</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/csf/predict_contrast_sensitivity.html">predict_contrast_sensitivity</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="autoapi/prfmodel/models/prf/index.html">prfmodel.models.prf</a><input aria-label="Toggle navigation of prfmodel.models.prf" class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" role="switch" type="checkbox"/><label for="toctree-checkbox-22"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="autoapi/prfmodel/models/prf/canonical/index.html">prfmodel.models.prf.canonical</a><input aria-label="Toggle navigation of prfmodel.models.prf.canonical" class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" role="switch" type="checkbox"/><label for="toctree-checkbox-23"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/prfmodel/models/prf/canonical/CSTPRFModel.html">CSTPRFModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/prfmodel/models/prf/canonical/CanonicalPRFModel.html">CanonicalPRFModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/prfmodel/models/prf/canonical/CenterSurroundPRFModel.html">CenterSurroundPRFModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/prfmodel/models/prf/canonical/DelayedNormPRFModel.html">DelayedNormPRFModel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/prfmodel/models/prf/canonical/DivNormPRFModel.html">DivNormPRFModel</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/CSTPRFModel.html">CSTPRFModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/DelayedNormGaussian2DPRFModel.html">DelayedNormGaussian2DPRFModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/DelayedNormPRFModel.html">DelayedNormPRFModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/DivNormGaussian2DPRFModel.html">DivNormGaussian2DPRFModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/DivNormPRFModel.html">DivNormPRFModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/DoG2DPRFModel.html">DoG2DPRFModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/Gaussian1DPRFModel.html">Gaussian1DPRFModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/Gaussian1DPRFTuning.html">Gaussian1DPRFTuning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/Gaussian2DCSSPRFModel.html">Gaussian2DCSSPRFModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/Gaussian2DCSTPRFModel.html">Gaussian2DCSTPRFModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/Gaussian2DPRFModel.html">Gaussian2DPRFModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/Gaussian2DPRFTuning.html">Gaussian2DPRFTuning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/PRFStimulusEncoder.html">PRFStimulusEncoder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/encode_prf_response.html">encode_prf_response</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/init_css_from_gaussian.html">init_css_from_gaussian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/init_cst_from_gaussian.html">init_cst_from_gaussian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/init_delayed_norm_from_gaussian.html">init_delayed_norm_from_gaussian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/init_div_norm_from_dog_css.html">init_div_norm_from_dog_css</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/init_dog_from_gaussian.html">init_dog_from_gaussian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/models/prf/predict_gaussian_response.html">predict_gaussian_response</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="autoapi/prfmodel/plotting/index.html">prfmodel.plotting</a><input aria-label="Toggle navigation of prfmodel.plotting" class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" role="switch" type="checkbox"/><label for="toctree-checkbox-24"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/plotting/animate_2d_prf_stimulus.html">animate_2d_prf_stimulus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/plotting/plot_1d_prf_stimulus.html">plot_1d_prf_stimulus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/plotting/plot_2d_prf_centers.html">plot_2d_prf_centers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/plotting/plot_2d_prf_stimulus.html">plot_2d_prf_stimulus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/plotting/plot_csf_stimulus_curve.html">plot_csf_stimulus_curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/plotting/plot_csf_stimulus_design.html">plot_csf_stimulus_design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/plotting/plot_grid_parameter_distribution.html">plot_grid_parameter_distribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/plotting/plot_observed_predicted.html">plot_observed_predicted</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/plotting/plot_parameter_by_roi.html">plot_parameter_by_roi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/plotting/plot_r_squared_comparison.html">plot_r_squared_comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/plotting/plot_r_squared_hist.html">plot_r_squared_hist</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/plotting/plot_response_heatmap.html">plot_response_heatmap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/plotting/plot_surface_stat_map.html">plot_surface_stat_map</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="autoapi/prfmodel/protocols/index.html">prfmodel.protocols</a><input aria-label="Toggle navigation of prfmodel.protocols" class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" role="switch" type="checkbox"/><label for="toctree-checkbox-25"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/protocols/CompositeModelProtocol.html">CompositeModelProtocol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/protocols/ModelProtocol.html">ModelProtocol</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="autoapi/prfmodel/regressors/index.html">prfmodel.regressors</a><input aria-label="Toggle navigation of prfmodel.regressors" class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" role="switch" type="checkbox"/><label for="toctree-checkbox-26"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="autoapi/prfmodel/regressors/base/index.html">prfmodel.regressors.base</a><input aria-label="Toggle navigation of prfmodel.regressors.base" class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" role="switch" type="checkbox"/><label for="toctree-checkbox-27"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/regressors/base/BaseRegressors.html">BaseRegressors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/regressors/AdditiveRegressors.html">AdditiveRegressors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/regressors/ConvolvedRegressors.html">ConvolvedRegressors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/regressors/RegressorsList.html">RegressorsList</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="autoapi/prfmodel/scaling/index.html">prfmodel.scaling</a><input aria-label="Toggle navigation of prfmodel.scaling" class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" role="switch" type="checkbox"/><label for="toctree-checkbox-28"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="autoapi/prfmodel/scaling/base/index.html">prfmodel.scaling.base</a><input aria-label="Toggle navigation of prfmodel.scaling.base" class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" role="switch" type="checkbox"/><label for="toctree-checkbox-29"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/scaling/base/BaseScaling.html">BaseScaling</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/scaling/Baseline.html">Baseline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/scaling/BaselineAmplitude.html">BaselineAmplitude</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="autoapi/prfmodel/stimuli/index.html">prfmodel.stimuli</a><input aria-label="Toggle navigation of prfmodel.stimuli" class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" role="switch" type="checkbox"/><label for="toctree-checkbox-30"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="autoapi/prfmodel/stimuli/base/index.html">prfmodel.stimuli.base</a><input aria-label="Toggle navigation of prfmodel.stimuli.base" class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" role="switch" type="checkbox"/><label for="toctree-checkbox-31"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/stimuli/base/Stimulus.html">Stimulus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/prfmodel/stimuli/base/StimulusTensors.html">StimulusTensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/stimuli/CFStimulus.html">CFStimulus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/stimuli/CFStimulusTensors.html">CFStimulusTensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/stimuli/CSFStimulus.html">CSFStimulus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/stimuli/CSFStimulusTensors.html">CSFStimulusTensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/stimuli/PRFStimulus.html">PRFStimulus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/stimuli/PRFStimulusTensors.html">PRFStimulusTensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/stimuli/Stimulus.html">Stimulus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/stimuli/StimulusTensors.html">StimulusTensors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/prfmodel/typing/index.html">prfmodel.typing</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="autoapi/prfmodel/utils/index.html">prfmodel.utils</a><input aria-label="Toggle navigation of prfmodel.utils" class="toctree-checkbox" id="toctree-checkbox-32" name="toctree-checkbox-32" role="switch" type="checkbox"/><label for="toctree-checkbox-32"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/utils/TensorFrame.html">TensorFrame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/utils/as_tensor_frame.html">as_tensor_frame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/utils/batched.html">batched</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/utils/calculate_eccentricity.html">calculate_eccentricity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/utils/calculate_polar_angle.html">calculate_polar_angle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/utils/calculate_r_squared.html">calculate_r_squared</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/utils/convert_parameters_to_tensor.html">convert_parameters_to_tensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/utils/get_dtype.html">get_dtype</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/prfmodel/utils/normalize_response.html">normalize_response</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="_sources/important_details.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section class="tex2jax_ignore mathjax_ignore" id="important-details">
+<h1>Important details<a class="headerlink" href="#important-details" title="Link to this heading">¶</a></h1>
+<p>When developing prfmodel, we made certain decisions for the design and implementation of different features.
+While the decisions concerning the development of prfmodel are covered in <a class="reference internal" href="development/index.html"><span class="std std-doc">Development</span></a> (e.g., architecture),
+we describe the choices that affect <strong>users</strong> directly in this section.</p>
+<section id="gaussian-models-use-proper-probability-densities">
+<h2>Gaussian models use proper probability densities<a class="headerlink" href="#gaussian-models-use-proper-probability-densities" title="Link to this heading">¶</a></h2>
+<p>Some software packages that implement Gaussian population receptive field (pRF) models use unnormalized Gaussian
+densities to predict tuning profiles. That is, they use the density:</p>
+<div class="math-wrapper amsmath docutils container" id="equation-2219954c-0a0d-48de-b38a-0a12a4f6a774">
+<div class="amsmath math notranslate nohighlight" id="equation-2219954c-0a0d-48de-b38a-0a12a4f6a774">
+<span class="eqno">(1)<a class="headerlink" href="#equation-2219954c-0a0d-48de-b38a-0a12a4f6a774" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+f(x) = e^{-\frac{\lVert x - \mu \rVert^2}{2 \sigma^2}},
+\end{equation}\]</div>
+</div>
+<p>that has a peak amplitude of <span class="math notranslate nohighlight">\(\max(f(x)) = 1\)</span>. Although this parameterization has advantages in some situations,
+we decided that all Gaussian models in prfmodel use proper densities that are normalized by their
+volume (see <a class="reference internal" href="autoapi/prfmodel/density/normal_density.html#prfmodel.density.normal_density" title="prfmodel.density.normal_density"><code class="xref py py-func docutils literal notranslate"><span class="pre">normal_density()</span></code></a>):</p>
+<div class="math-wrapper amsmath docutils container" id="equation-d999af76-6898-442d-8c72-5f5e04e9fa28">
+<div class="amsmath math notranslate nohighlight" id="equation-d999af76-6898-442d-8c72-5f5e04e9fa28">
+<span class="eqno">(2)<a class="headerlink" href="#equation-d999af76-6898-442d-8c72-5f5e04e9fa28" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+f(x) = \frac{1}{V} e^{-\frac{\lVert x - \mu \rVert^2}{2 \sigma^2}},
+\end{equation}\]</div>
+</div>
+<p>where <span class="math notranslate nohighlight">\(V = (2 \pi \sigma^2)^{k / 2}\)</span> is the volume and <span class="math notranslate nohighlight">\(k\)</span> is the number of dimensions of the tuning profile.
+The proper density has a peak amplitude of <span class="math notranslate nohighlight">\(\max(f(x)) = 1/V\)</span>.</p>
+<p>The proper Gaussian density has the advantage that it decouples amplitude parameters from pRF size/tuning width
+parameters <span class="math notranslate nohighlight">\(\sigma\)</span>, making them easier to interpret (although amplitudes are often treated as nuisance parameters).
+Because the density peak is <span class="math notranslate nohighlight">\(1/V\)</span>, stimulus-encoded responses are scaled by <span class="math notranslate nohighlight">\(1/V\)</span>, and amplitude estimates are scaled
+by <span class="math notranslate nohighlight">\(V\)</span> (i.e., larger amplitudes for <span class="math notranslate nohighlight">\(V &gt; 1\)</span>). However, this decoupling does <strong>not</strong> change the identifiability of the
+model parameters.</p>
+<p>Using the proper Gaussian density implies that parameter estimates for amplitudes
+cannot be directly compared to the estimates from software that uses the unnormalized density. This holds not only
+for the Gaussian 1D and 2D pRF models but also for difference of Gaussian and Gaussian divisive normalization pRF
+models as well as Gaussian connective field models.</p>
+<p>It is possible to convert the amplitudes estimated with the proper density into those estimated with unnormalized
+density by dividing by the volume:</p>
+<div class="math-wrapper amsmath docutils container" id="equation-888b907d-ce43-4b39-b810-4fc9a11805cb">
+<div class="amsmath math notranslate nohighlight" id="equation-888b907d-ce43-4b39-b810-4fc9a11805cb">
+<span class="eqno">(3)<a class="headerlink" href="#equation-888b907d-ce43-4b39-b810-4fc9a11805cb" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\beta_\text{unnorm} = \frac{\beta_\text{norm}}{V}.
+\end{equation}\]</div>
+</div>
+<p>Importantly, this conversion assumes that the models for which the amplitudes have been estimated are otherwise equal.</p>
+<p>Note that you can implement your own Gaussian models in prfmodel that use unnormalized densities
+(see the tutorial on <a class="reference internal" href="tutorials/tutorials/custom_models.html"><span class="std std-doc">custom models</span></a>).</p>
+</section>
+<section id="spatial-prf-models-expect-the-y-axis-first">
+<h2>Spatial pRF models expect the y-axis first<a class="headerlink" href="#spatial-prf-models-expect-the-y-axis-first" title="Link to this heading">¶</a></h2>
+<p>In prfmodel, spatial pRF models assume that the stimulus grid and design matrix have the y-axis as their first
+dimension. For example, a Gaussian 2D pRF model expects that <code class="docutils literal notranslate"><span class="pre">stimulus.grid[:,</span> <span class="pre">:,</span> <span class="pre">0]</span></code> contains the y-coordinate and
+<code class="docutils literal notranslate"><span class="pre">stimulus.grid[:,</span> <span class="pre">:,</span> <span class="pre">1]</span></code> the x-coordinate of every cell in the stimulus design. This matters because the model
+parameters (e.g., the center coordinates of the Gaussian, <code class="docutils literal notranslate"><span class="pre">mu_x</span></code> and <code class="docutils literal notranslate"><span class="pre">mu_y</span></code>) are applied to the stimulus grid and
+design matrix following this order. This order conforms with C-style row-major order that is also used as the default
+in most other Python packages, e.g., NumPy. For spatial 3D pRF models, the order is y, x, z.</p>
+</section>
+<section id="spatial-receptive-fields-are-not-scaled-by-grid-cell-size">
+<h2>Spatial receptive fields are not scaled by grid cell size<a class="headerlink" href="#spatial-receptive-fields-are-not-scaled-by-grid-cell-size" title="Link to this heading">¶</a></h2>
+<p>Some software packages normalize stimulus-encoded model responses of spatial models by the
+size of the cells in the spatial grid. For example, for the Gaussian 2D pRF model in visual space, the stimulus-encoded
+response can be normalized as follows:</p>
+<div class="math-wrapper amsmath docutils container" id="equation-dda28f1b-724f-458a-aad5-a5ddb8255be3">
+<div class="amsmath math notranslate nohighlight" id="equation-dda28f1b-724f-458a-aad5-a5ddb8255be3">
+<span class="eqno">(4)<a class="headerlink" href="#equation-dda28f1b-724f-458a-aad5-a5ddb8255be3" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+r(t) = \sum_{xy} g(x, y) \cdot S(t, x, y) dA,
+\end{equation}\]</div>
+</div>
+<p>where <span class="math notranslate nohighlight">\(g(x, y)\)</span> is the Gaussian pRF tuning profile, <span class="math notranslate nohighlight">\(S(t, x, y)\)</span> is the stimulus design, and <span class="math notranslate nohighlight">\(dA = dx dy\)</span> is the
+size of each cell in the grid. This normalization changes
+the scale and the interpretation of amplitude parameters, making them comparable across spatial grid resolutions.</p>
+<p>An alternative convention adopted by some software packages is to normalize spatial RFs (called tuning
+profiles in prfmodel) by their sum<a class="footnote-reference brackets" href="#id4" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>. This makes the conflict between volume-normalized vs -unnormalized densities
+irrelevant and amplitudes comparable across grid cell sizes. However, when a pRF only partially falls within the
+stimulus coordinate grid, normalizing it inflates the tuning strength for the overlapping coordinates and biases
+amplitude estimates. Therefore, the normalization ties the amplitude of these pRFs to the sizes of the
+spatial coordinate dimensions (e.g., width and height)<a class="footnote-reference brackets" href="#id5" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.</p>
+<p>Normalization also leads to numerical issues when RFs are not covered by the
+stimulus grid because then their sum is zero. Moreover, because some spatial models have irregular-spaced
+one-hot-encoded grids (e.g., the Gaussian 1D pRF model in log numerosity space) and non-spatial models
+(e.g., the Gaussian connective field model) do not have an equivalent
+grid cell size or meaningful normalizations, we decided <strong>against</strong> normalizing spatial models in prfmodel.
+We also do not want to tie our model implementations to the spatial domain.</p>
+<p>This decision means that amplitude parameters are not comparable across different spatial grid resolutions (e.g.,
+upsampling a <span class="math notranslate nohighlight">\(128^2\)</span> to a <span class="math notranslate nohighlight">\(256^2\)</span> grid while keeping the overall width and height would shrink amplitude estimates
+by 4). However, for regular-spaced grids, it is possible to divide amplitudes by the grid cell size to make them
+comparable across grid resolutions. Normalizing (or not) does <strong>not</strong> affect the identifiability of model parameters.</p>
+</section>
+<section id="impulse-responses-are-only-normalized-when-they-describe-measurements-of-neural-activity">
+<h2>Impulse responses are only normalized when they describe measurements of neural activity<a class="headerlink" href="#impulse-responses-are-only-normalized-when-they-describe-measurements-of-neural-activity" title="Link to this heading">¶</a></h2>
+<p>In prfmodel, impulse models can describe both the canonical shape of a measurement of brain activity (e.g., the
+BOLD response in fMRI) and the activity of neuron populations. When they describe a measurement of neural activity,
+the predicted impulse response is sum-normalized by default (other normalizations can be chosen via the <code class="docutils literal notranslate"><span class="pre">norm</span></code>
+argument, see <a class="reference internal" href="autoapi/prfmodel/impulse/DerivativeTwoGammaImpulse.html#prfmodel.impulse.DerivativeTwoGammaImpulse" title="prfmodel.impulse.DerivativeTwoGammaImpulse"><code class="xref py py-class docutils literal notranslate"><span class="pre">DerivativeTwoGammaImpulse</span></code></a>)<a class="footnote-reference brackets" href="#id6" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>. However, when they describe the behavior
+of a neuron population, the predicted response is not normalized because its scale is part of the neural dynamics that
+the model describes (see e.g., <a class="reference internal" href="autoapi/prfmodel/impulse/SustainedImpulse.html#prfmodel.impulse.SustainedImpulse" title="prfmodel.impulse.SustainedImpulse"><code class="xref py py-class docutils literal notranslate"><span class="pre">SustainedImpulse</span></code></a>).</p>
+<p>For the measurement impulse models, the sum-normalization decouples amplitude parameters from impulse response
+parameters (e.g., the shape of the gamma distribution), but it does <strong>not</strong> affect the identifiability of model
+parameters. With sum-normalization, a sustained stimulus with encoded response <span class="math notranslate nohighlight">\(r\)</span> produces a plateau of exactly
+<span class="math notranslate nohighlight">\(\beta \times r\)</span> (unit DC gain), making the amplitude easier to interpret. It also makes the amplitude approximately
+invariant to the resolution of the impulse response (the approximation improves with finer resolution).</p>
+<p>It is possible to convert impulse-sum-normalized into impulse-unnormalized amplitudes:</p>
+<div class="math-wrapper amsmath docutils container" id="equation-87864874-5d7b-4347-8c69-c61e1beaa8e2">
+<div class="amsmath math notranslate nohighlight" id="equation-87864874-5d7b-4347-8c69-c61e1beaa8e2">
+<span class="eqno">(5)<a class="headerlink" href="#equation-87864874-5d7b-4347-8c69-c61e1beaa8e2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\beta_\text{unnorm} = \beta_\text{norm} / \sum_t h_\text{unnorm}(t),
+\end{equation}\]</div>
+</div>
+<p>where <span class="math notranslate nohighlight">\(h_\text{unnorm}(t)\)</span> is the unnormalized impulse response.</p>
+</section>
+<section id="impulse-responses-are-sampled-at-the-frame-duration-of-the-stimulus">
+<h2>Impulse responses are sampled at the frame duration of the stimulus<a class="headerlink" href="#impulse-responses-are-sampled-at-the-frame-duration-of-the-stimulus" title="Link to this heading">¶</a></h2>
+<p>Discrete convolution assumes that the convolved signals have the same sampling rate. In prfmodel, stimulus designs
+and observed neural responses are represented as series of time frames that typically have the same sampling rate
+(the TR; repetition time). For model predictions to be correct, impulse responses must be sampled at the same rate as
+the stimulus design.</p>
+<p>For this reason, every pRF and CSF stimulus has a required <code class="docutils literal notranslate"><span class="pre">frame_duration</span></code> that contains the duration of one design
+frame in seconds (e.g., the TR). Impulse models have a <code class="docutils literal notranslate"><span class="pre">resolution</span></code> (their sampling interval in seconds) that is <code class="docutils literal notranslate"><span class="pre">None</span></code>
+by default. Inside a canonical model, an impulse model without a <code class="docutils literal notranslate"><span class="pre">resolution</span></code> is sampled at the <code class="docutils literal notranslate"><span class="pre">frame_duration</span></code> of the
+stimulus that the model is called with, so the timing is correct without any further setup:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">prfmodel.models.prf</span><span class="w"> </span><span class="kn">import</span> <span class="n">Gaussian2DPRFModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">prfmodel.stimuli</span><span class="w"> </span><span class="kn">import</span> <span class="n">PRFStimulus</span>
+
+
+<span class="n">TR</span> <span class="o">=</span> <span class="mf">1.5</span>  <span class="c1"># in seconds</span>
+
+<span class="c1"># The stimulus carries the sampling rate of the design</span>
+<span class="n">stimulus</span> <span class="o">=</span> <span class="n">PRFStimulus</span><span class="p">(</span><span class="n">design</span><span class="o">=</span><span class="n">design</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="n">grid</span><span class="p">,</span> <span class="n">frame_duration</span><span class="o">=</span><span class="n">TR</span><span class="p">)</span>
+
+<span class="c1"># The default impulse model is sampled every 1.5 seconds when the model is called with this stimulus</span>
+<span class="n">prf_model</span> <span class="o">=</span> <span class="n">Gaussian2DPRFModel</span><span class="p">()</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">prf_model</span><span class="p">(</span><span class="n">stimulus</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>An explicit <code class="docutils literal notranslate"><span class="pre">resolution</span></code> is never overridden. If it differs from the <code class="docutils literal notranslate"><span class="pre">frame_duration</span></code> of the stimulus, the canonical
+model (and every fitter it is passed to) issues a <a class="reference internal" href="autoapi/prfmodel/exceptions/ResolutionMismatchWarning.html#prfmodel.exceptions.ResolutionMismatchWarning" title="prfmodel.exceptions.ResolutionMismatchWarning"><code class="xref py py-class docutils literal notranslate"><span class="pre">ResolutionMismatchWarning</span></code></a>,
+because the impulse response and the stimulus design are then convolved on different time axes. An impulse model that
+is used on its own (e.g., to plot an impulse response) is sampled every second if it has no <code class="docutils literal notranslate"><span class="pre">resolution</span></code>.</p>
+<p>When comparing model predictions against observed timecourses, both must have matching sampling rates too (typically
+the TR), otherwise one or the other must be up- or downsampled.</p>
+</section>
+<section id="impulse-responses-are-sampled-at-the-leading-edge-of-each-time-frame-by-default">
+<h2>Impulse responses are sampled at the leading edge of each time frame by default<a class="headerlink" href="#impulse-responses-are-sampled-at-the-leading-edge-of-each-time-frame-by-default" title="Link to this heading">¶</a></h2>
+<p>By default, prfmodel assumes that the TR of observed neural timecourses is <strong>locked to the onset of a stimulus design
+frame</strong> (e.g., BOLD measurements in fMRI have been slice-time corrected with fMRIPrep using <code class="docutils literal notranslate"><span class="pre">--slice-time-ref</span> <span class="pre">0</span></code>).
+This implies that time frames of observed neural timecourses represent instantaneous measurements of brain activity at
+each TR (not averages over an interval). Without slice-time correction, the alignment differs between slices and
+an offset (see below) can only approximate it.</p>
+<p>Without any up- or downsampling, stimulus design frame <span class="math notranslate nohighlight">\(i\)</span>, observed sample <span class="math notranslate nohighlight">\(i\)</span> and impulse response frame <span class="math notranslate nohighlight">\(i\)</span> all
+refer to the time <span class="math notranslate nohighlight">\(i \cdot \text{TR}\)</span>. By default, we therefore sample impulse responses at the <strong>leading edge</strong> of each
+frame.</p>
+<p>With the default <code class="docutils literal notranslate"><span class="pre">offset</span></code> of zero, the first sample of the kernel is at <span class="math notranslate nohighlight">\(t=0\)</span>, and the default impulse model
+<a class="reference internal" href="autoapi/prfmodel/impulse/DerivativeTwoGammaImpulse.html#prfmodel.impulse.DerivativeTwoGammaImpulse" title="prfmodel.impulse.DerivativeTwoGammaImpulse"><code class="xref py py-class docutils literal notranslate"><span class="pre">DerivativeTwoGammaImpulse</span></code></a> returns exactly zero there. Discrete convolution in prfmodel
+treats the first frame of the impulse response as lag 0, so an impulse response of zero means that a stimulus cannot
+contribute to the observed neural response during its exact onset (which is biologically plausible).</p>
+<p>The leading-edge sampling assumption can be changed by setting an offset in the impulse model. For example, for
+mid-frame sampling (i.e., response measurements align with the <em>center</em> of a stimulus design frame, mirroring the
+default slice-time correction reference of 0.5 in fMRIPrep), the offset should be specified as <code class="docutils literal notranslate"><span class="pre">TR/2.0</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">prfmodel.impulse</span><span class="w"> </span><span class="kn">import</span> <span class="n">DerivativeTwoGammaImpulse</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">prfmodel.models.prf</span><span class="w"> </span><span class="kn">import</span> <span class="n">Gaussian2DPRFModel</span>
+
+
+<span class="n">TR</span> <span class="o">=</span> <span class="mf">1.5</span>  <span class="c1"># in seconds, the &#39;frame_duration&#39; of the stimulus</span>
+
+<span class="c1"># Create a custom impulse model with a positive offset. Without a &#39;resolution&#39;, it is sampled at the</span>
+<span class="c1"># &#39;frame_duration&#39; of the stimulus.</span>
+<span class="n">impulse_model</span> <span class="o">=</span> <span class="n">DerivativeTwoGammaImpulse</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="n">TR</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
+
+<span class="c1"># Insert the custom impulse model into the canonical pRF model</span>
+<span class="n">prf_model</span> <span class="o">=</span> <span class="n">Gaussian2DPRFModel</span><span class="p">(</span>
+    <span class="n">impulse_model</span><span class="o">=</span><span class="n">impulse_model</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="before-convolution-stimulus-encoded-model-responses-are-padded-with-their-first-frame">
+<h2>Before convolution, stimulus-encoded model responses are padded with their first frame<a class="headerlink" href="#before-convolution-stimulus-encoded-model-responses-are-padded-with-their-first-frame" title="Link to this heading">¶</a></h2>
+<p>To make sure that convolving the stimulus-encoded model response <span class="math notranslate nohighlight">\(r(t)\)</span> with the impulse response <span class="math notranslate nohighlight">\(h(t)\)</span> returns model
+predictions for the same number of time frames as the stimulus design, we pad stimulus-encoded model responses with
+their first frame. Specifically, we first prepend <code class="docutils literal notranslate"><span class="pre">len(h)</span> <span class="pre">-</span> <span class="pre">1</span></code> copies of the first stimulus-encoded response frame and
+then convolve both signals using discrete convolution.</p>
+<p>This choice rests on the assumption that the first stimulus design frame was present indefinitely before the observed
+timecourse and, thus, the model prediction at <span class="math notranslate nohighlight">\(t = 0\)</span> is the sustained response to the first frame. If the stimulus
+design starts at baseline (e.g., a blank screen in 2D visual space) for at least the duration of the impulse response,
+this is the resting-state response. If the design starts with a stimulus, predictions for the first frames assume
+that this stimulus was already shown for an extended time, so consider starting runs with a blank period. Stimuli from
+previous runs in an experiment should not influence the recording of the response to the current stimulus.</p>
+</section>
+<section id="what-if-i-want-to-deviate-from-these-decisions">
+<h2>What if I want to deviate from these decisions?<a class="headerlink" href="#what-if-i-want-to-deviate-from-these-decisions" title="Link to this heading">¶</a></h2>
+<p>If you have good reasons to deviate from our decisions, you can implement your own models in prfmodel that use
+different conventions (see the tutorial on <a class="reference internal" href="tutorials/tutorials/custom_models.html"><span class="std std-doc">custom models</span></a>).</p>
+</section>
+</section>
+<hr class="footnotes docutils" />
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id4" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Alternative spatial normalization functions (e.g., L2 norm) are possible but bring similar and sometimes even
+more problems.</p>
+</aside>
+<aside class="footnote brackets" id="id5" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>It is also possible to normalize the stimulus-encoded response which couples amplitudes to the stimulus
+design instead of the grid. This comes with similar problems as normalizing the RF.</p>
+</aside>
+<aside class="footnote brackets" id="id6" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">3</a><span class="fn-bracket">]</span></span>
+<p>Normalizing by the L2 norm is actually numerically more stable (because it is never zero for signed impulse
+responses) but it also couples amplitudes to impulse model parameters because it does not preserve unit DC gain.</p>
+</aside>
+</aside>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="tutorials/index.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Tutorials &amp; Examples</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="getting_started.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Getting started</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2026, Netherlands eScience Center, Vrije Universiteit Amsterdam, Netherlands Institute for Neuroscience
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Important details</a><ul>
+<li><a class="reference internal" href="#gaussian-models-use-proper-probability-densities">Gaussian models use proper probability densities</a></li>
+<li><a class="reference internal" href="#spatial-prf-models-expect-the-y-axis-first">Spatial pRF models expect the y-axis first</a></li>
+<li><a class="reference internal" href="#spatial-receptive-fields-are-not-scaled-by-grid-cell-size">Spatial receptive fields are not scaled by grid cell size</a></li>
+<li><a class="reference internal" href="#impulse-responses-are-only-normalized-when-they-describe-measurements-of-neural-activity">Impulse responses are only normalized when they describe measurements of neural activity</a></li>
+<li><a class="reference internal" href="#impulse-responses-are-sampled-at-the-frame-duration-of-the-stimulus">Impulse responses are sampled at the frame duration of the stimulus</a></li>
+<li><a class="reference internal" href="#impulse-responses-are-sampled-at-the-leading-edge-of-each-time-frame-by-default">Impulse responses are sampled at the leading edge of each time frame by default</a></li>
+<li><a class="reference internal" href="#before-convolution-stimulus-encoded-model-responses-are-padded-with-their-first-frame">Before convolution, stimulus-encoded model responses are padded with their first frame</a></li>
+<li><a class="reference internal" href="#what-if-i-want-to-deviate-from-these-decisions">What if I want to deviate from these decisions?</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=938c9ccc"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    </body>
+</html>

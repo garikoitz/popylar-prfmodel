@@ -1,0 +1,44 @@
+prfmodel.scaling
+================
+
+.. py:module:: prfmodel.scaling
+
+.. autoapi-nested-parse::
+
+   Scaling submodels.
+
+   This module contains models that scale (and shift) predicted neural responses.
+
+   Scaling models are intended to be used as submodels within canonical models, e.g.,
+   :class:`~prfmodel.models.prf.canonical.CanonicalPRFModel`.
+
+
+
+Submodules
+----------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/prfmodel/scaling/base/index
+
+.. autoapisummary::
+
+   prfmodel.scaling.base
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   Baseline </autoapi/prfmodel/scaling/Baseline>
+   BaselineAmplitude </autoapi/prfmodel/scaling/BaselineAmplitude>
+
+.. autoapisummary::
+
+   prfmodel.scaling.Baseline
+   prfmodel.scaling.BaselineAmplitude
+
+

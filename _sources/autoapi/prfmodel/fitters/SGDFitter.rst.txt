@@ -1,0 +1,136 @@
+prfmodel.fitters.SGDFitter
+==========================
+
+.. py:class:: prfmodel.fitters.SGDFitter(model: prfmodel.models.base.BaseCanonical, stimulus: prfmodel.stimuli.Stimulus, adapter: prfmodel.fitters.adapter.Adapter | None = None, optimizer: keras.optimizers.Optimizer | None = None, loss: keras.losses.Loss | collections.abc.Callable | None = None, compile_step: bool = False, dtype: str | None = None)
+
+
+
+   Fit population receptive field models with stochastic gradient descent (SGD).
+
+   Estimates model parameters iteratively through SGD by minimizing the loss between model predictions and target
+   data.
+
+   :param model: A model instance that can be fit to data.
+                 The model must implement the :meth:`~prfmodel.models.base.BaseCanonical.__call__` method to make
+                 predictions that can be compared to data.
+   :type model: BaseCanonical
+   :param stimulus: Stimulus object.
+   :type stimulus: Stimulus
+   :param adapter: Adapter object to apply transformations to parameters during fitting.
+   :type adapter: Adapter, optional
+   :param optimizer: Optimizer instance. Default is `None` where a `keras.optimizers.Adam` optimizer is used.
+   :type optimizer: keras.optimizers.Optimizer, optional
+   :param loss: Loss instance or function with the signature `f(y, y_pred)`, where `y` are the target data and `y_pred` are
+                the model predictions. Default is `None` where a `keras.losses.MeanSquaredError` loss is used.
+   :type loss: keras.losses.Loss or Callable, optional
+   :param compile_step: Whether to compile the optimization step with the backend's native primitive: `jax.jit` on JAX,
+                        `tf.function` on TensorFlow and `torch.compile` on PyTorch. With `False` (the default) the step
+                        runs eagerly, which is slower but makes the step inspectable and produces Python
+                        tracebacks that point at the offending line. Whether compiling pays off depends on the backend
+                        and on the problem size.
+   :type compile_step: bool, default=False
+   :param dtype: The dtype of the prediction result. If `None` (the default), uses the dtype from
+                 :func:`prfmodel.utils.get_dtype`.
+   :type dtype: str, optional
+
+   :Warns: **ResolutionMismatchWarning** -- When an impulse submodel has an explicit resolution that differs from the frame duration of the
+           stimulus. See :meth:`~prfmodel.models.base.BaseCanonical.check_stimulus`.
+
+   .. rubric:: Notes
+
+   At each step during the fitting, the `model` makes a prediction for each batch in the target data
+   given the `stimulus` and the current parameter values. The predictions are then compared to the target data and
+   the parameter values are updated given the `optimizer` schedule.
+
+   When `batch_size` is set in :meth:`fit`, units are split into data batches that are each optimized independently
+   for `num_steps` steps, with freshly-initialized optimizer state per batch. This bounds memory use for large
+   datasets without changing the result for any given unit, since units do not share parameters or gradients.
+
+   When `compile_step` is enabled, the optimization step is compiled once per data batch and then reused
+   for every step, so the cost of tracing is paid once rather than `num_steps` times. Compiling requires
+   that no tensor value is read back inside the step, since while the graph is being built there are no
+   values to read. Parameter checks therefore run before the loop: the initial parameters are passed
+   through one prediction while nothing is traced yet, so invalid starting values still raise with a
+   useful message. Values that only become invalid *during* the optimization are not reported and show
+   up as a `NaN` loss instead.
+
+   .. rubric:: Examples
+
+   Fit a 2D Gaussian population receptive field model.
+
+   >>> import numpy as np
+   >>> import pandas as pd
+   >>> from prfmodel.examples import load_2d_prf_bar_stimulus
+   >>> from prfmodel.models.prf import Gaussian2DPRFModel
+   >>> stimulus = load_2d_prf_bar_stimulus()
+   >>> # Only fit response model
+   >>> model = Gaussian2DPRFModel(
+   ...     impulse_model=None,
+   ...     scaling_model=None,
+   ... )
+   >>> fitter = SGDFitter(model=model, stimulus=stimulus)
+   >>> # Define start parameters
+   >>> params_init = pd.DataFrame({
+   ...     "mu_y": [0.0],
+   ...     "mu_x": [0.0],
+   ...     "sigma": [1.0],
+   ... })
+   >>> # Create dummy data for a single unit
+   >>> data = np.random.default_rng(0).standard_normal((1, stimulus.design.shape[0]))
+   >>> # Fit model parameters
+   >>> history, params_sgd = fitter.fit(data, params_init, num_steps=5)
+   >>> print(list(params_sgd.columns))
+   ['mu_y', 'mu_x', 'sigma']
+
+
+   .. py:method:: fit(data: prfmodel.typing.Tensor, init_parameters: pandas.DataFrame, fixed_parameters: str | collections.abc.Sequence[str] | None = None, num_steps: int = 1000, batch_size: int | None = None, regressors: pandas.DataFrame | None = None) -> tuple[SGDHistory, pandas.DataFrame]
+
+      Fit a population receptive field model to target data.
+
+      :param data: Target data to fit the model to. Must have shape `(num_units, num_frames)`, where `num_units` is the
+                   number of units for which parameters are estimated and `num_frames` is the number of time steps.
+      :type data: :data:`prfmodel.typing.Tensor`
+      :param init_parameters: Dataframe with initial model parameters. Columns must contain different model parameters and
+                              rows parameter values for each unit in `data`.
+      :type init_parameters: pandas.DataFrame
+      :param fixed_parameters: Name(s) of model parameters that are fixed to their starting values, i.e., their values are not
+                               optimized during the fitting. If `None` (the default), all parameters are optimized during fitting.
+      :type fixed_parameters: str or Sequence of str, optional
+      :param num_steps: Number of optimization steps.
+      :type num_steps: int, default=1000
+      :param batch_size: Number of units to fit at the same time. If `None` (the default), all units are fit at once.
+      :type batch_size: int, optional
+      :param regressors: Runtime regressor design data forwarded to every model prediction call. Must be provided when the model
+                         has a ``regressors_model`` configured.
+      :type regressors: pandas.DataFrame, optional
+
+      :returns: * *SGDHistory* -- A history object that contains loss and metric values for each optimization step.
+                * *pandas.DataFrame* -- A dataframe with final model parameters. The parameters that are not in `fixed_parameters` are NaN for
+                  units that are excluded from the fit (see Warns). Other parameters are returned unchanged.
+
+      :raises ShapeError: If `data` does not have two dimensions, if its number of rows does not match the number of rows in
+          `init_parameters`, or if its number of columns does not match the number of frames in the model
+          prediction.
+      :raises ValueError: If a name in `fixed_parameters` is not a parameter of the model or the adapter.
+
+      :Warns: **InvalidUnitsWarning** -- When the time series of some units in `data` are constant or contain NaN or infinite values. These
+              units are excluded from the fit and their estimated parameters and losses are NaN.
+
+
+
+   .. py:attribute:: compile_step
+      :value: False
+
+
+      Whether the optimization step is compiled.
+
+
+   .. py:attribute:: dtype
+      :value: None
+
+
+      The dtype that is used during fitting.
+
+      If `None`, uses `keras.config.floatx()` which defaults
+      to `float32`.
+

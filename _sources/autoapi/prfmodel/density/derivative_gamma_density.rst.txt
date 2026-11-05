@@ -1,0 +1,57 @@
+prfmodel.density.derivative_gamma_density
+=========================================
+
+.. py:function:: prfmodel.density.derivative_gamma_density(value: prfmodel.typing.Tensor, shape: prfmodel.typing.Tensor, scale: prfmodel.typing.Tensor) -> prfmodel.typing.Tensor
+
+   Calculate the derivative density of a gamma distribution.
+
+   The distribution uses a shape and scale parameterization.
+
+   :param value: The values at which to evaluate the derivative gamma distribution. Must be scalar or with shape
+                 (1, m). Values at or below zero are allowed and give a derivative density of zero.
+   :type value: :data:`prfmodel.typing.Tensor`
+   :param shape: The shape parameter. Must be scalar or with shape (n, m).
+   :type shape: :data:`prfmodel.typing.Tensor`
+   :param scale: The scale parameter. Must be scalar or with shape (n, m).
+   :type scale: :data:`prfmodel.typing.Tensor`
+
+   :returns: The derivative density of the gamma distribution at `value` as a scalar or with shape (n, m).
+   :rtype: :data:`prfmodel.typing.Tensor`
+
+   .. rubric:: Notes
+
+   The density of the gamma distribution
+   with `shape` :math:`\alpha` and `scale` :math:`\theta` is given by:
+
+   .. math::
+
+       f(x) =  \frac{1}{\mathtt{\theta}^{\mathtt{\alpha}} \Gamma(\mathtt{\alpha})}
+       x^{\mathtt{\alpha} - 1} e^{-x / \mathtt{\theta}}.
+
+   The derivative of the density with respect to :math:`x` can be defined as a function of the original density
+   :math:`f(x)`:
+
+   .. math::
+
+       f(x)' = f(x) \frac{(\alpha - 1)}{t} - \frac{1}{\theta}
+
+   The derivative density is zero for values at and below zero, including at
+   exactly zero where the density is zero and the derivative term is infinite. Negative `shape` returns a
+   finite but meaningless number whereas negative `scale`returns NaN instead of raising an error.
+
+   .. seealso::
+
+      :py:obj:`gamma_density`
+          The gamma distribution density.
+
+   .. rubric:: Examples
+
+   >>> import numpy as np
+   >>> from prfmodel.density import derivative_gamma_density
+   >>> t = np.array([[1.0, 2.0, 3.0]])   # shape (1, 3)
+   >>> shape = np.array([[2.0], [4.0]])   # shape (2, 1)
+   >>> scale = np.array([[1.0], [1.0]])    # shape (2, 1)
+   >>> dens = derivative_gamma_density(t, shape, scale)
+   >>> print(dens.shape)
+   (2, 3)
+

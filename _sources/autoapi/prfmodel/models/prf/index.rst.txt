@@ -1,0 +1,129 @@
+prfmodel.models.prf
+===================
+
+.. py:module:: prfmodel.models.prf
+
+.. autoapi-nested-parse::
+
+   Population receptive field (pRF) models.
+
+   This module contains pRF tuning models that predict a pRF tuning profile over a stimulus grid
+   (e.g., :class:`Gaussian2DPRFTuning`).
+
+   It also contains the
+   :class:`PRFStimulusEncoder` class that encodes a pRF response with a stimulus design.
+
+   Finally, it
+   contains multiple canonical models that combine a pRF tuning profile with a stimulus encoding model, an impulse
+   response
+   model from :mod:`~prfmodel.impulse`, and a scaling model from :mod:`~prfmodel.scaling`. Currently, canonical Gaussian
+   [1]_ [2]_, Compressive Spatial Summation (CSS) [3]_, Difference of Gaussian (DoG) [4]_, and
+   Divisive Normalization (DivNorm; DN) [5]_, and Compressive Spatiotemporal (CST) [6]_ models are implemented.
+   These models increase in complexity, with the canonical Gaussian being the least and the DN model being the most
+   complex model. The CST model differs from the others in that it splits the response into a sustained and two
+   transient temporal channels; see :class:`Gaussian2DCSTPRFModel` for its sampling limitations.
+
+   There are also multiple helper functions that initialize starting parameters from parameter estimates obtained from a
+   different model (e.g., :func:`init_css_from_gaussian`).
+
+   The function :func:`encode_prf_response` can be used to stimulus-encode a pRF response with arbitray dimensions. This
+   function is also internally used by :class:`PRFStimulusEncoder`.
+
+   The function :func:`predict_gaussian_response` can be used to make Gaussian density predictions to stimulus grids with
+   arbitrary dimensions. This function is also used internally by :class:`Gaussian2DPRFTuning` and
+   :class:`Gaussian1DPRFTuning`.
+
+   .. rubric:: References
+
+   .. [1] Dumoulin, S. O., & Wandell, B. A. (2008). Population receptive field estimates in human visual cortex.
+       *NeuroImage*, *39*(2), 647-660. https://doi.org/10.1016/j.neuroimage.2007.09.034
+   .. [2] Harvey, B. M., Klein, B. P., Petridou, N., & Dumoulin, S. O. (2013). Topographic representation of
+         numerosity in the human parietal cortex. *Science*, 341(6150), 1123-1126. https://doi.org/10.1126/science.1239052
+   .. [3] Kay, K. N., Winawer, J., Mezer, A., & Wandell, B. A. (2013). Compressive spatial summation in human visual
+       cortex. *Journal of Neurophysiology*, *110*(2), 481-494. https://doi.org/10.1152/jn.00105.2013
+   .. [4] Zuiderbaan, W., Harvey, B. M., & Dumoulin, S. O. (2012). Modeling center-surround configurations in population
+       receptive fields using fMRI. *Journal of Vision*, *12*(3), 10. https://doi.org/10.1167/12.3.10
+   .. [5] Aqil, M., Knapen, T., & Dumoulin, S. O. (2021). Divisive normalization unifies disparate response signatures
+       throughout the human visual hierarchy. *Proceedings of the National Academy of Sciences*, *118*(46), e2108713118.
+       https://doi.org/10.1073/pnas.2108713118
+   .. [6] Kim, I., Kupers, E. R., Lerma-Usabiaga, G., & Grill-Spector, K. (2024). Characterizing spatiotemporal
+       population receptive fields in human visual cortex with fMRI. *The Journal of Neuroscience*, *44*(2),
+       e0803232023. https://doi.org/10.1523/JNEUROSCI.0803-23.2023
+
+
+
+Submodules
+----------
+
+.. toctree::
+   :hidden:
+
+   /autoapi/prfmodel/models/prf/canonical/index
+
+.. autoapisummary::
+
+   prfmodel.models.prf.canonical
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   CSTPRFModel </autoapi/prfmodel/models/prf/CSTPRFModel>
+   DelayedNormGaussian2DPRFModel </autoapi/prfmodel/models/prf/DelayedNormGaussian2DPRFModel>
+   DelayedNormPRFModel </autoapi/prfmodel/models/prf/DelayedNormPRFModel>
+   DivNormGaussian2DPRFModel </autoapi/prfmodel/models/prf/DivNormGaussian2DPRFModel>
+   DivNormPRFModel </autoapi/prfmodel/models/prf/DivNormPRFModel>
+   DoG2DPRFModel </autoapi/prfmodel/models/prf/DoG2DPRFModel>
+   Gaussian1DPRFModel </autoapi/prfmodel/models/prf/Gaussian1DPRFModel>
+   Gaussian1DPRFTuning </autoapi/prfmodel/models/prf/Gaussian1DPRFTuning>
+   Gaussian2DCSSPRFModel </autoapi/prfmodel/models/prf/Gaussian2DCSSPRFModel>
+   Gaussian2DCSTPRFModel </autoapi/prfmodel/models/prf/Gaussian2DCSTPRFModel>
+   Gaussian2DPRFModel </autoapi/prfmodel/models/prf/Gaussian2DPRFModel>
+   Gaussian2DPRFTuning </autoapi/prfmodel/models/prf/Gaussian2DPRFTuning>
+   PRFStimulusEncoder </autoapi/prfmodel/models/prf/PRFStimulusEncoder>
+
+.. autoapisummary::
+
+   prfmodel.models.prf.CSTPRFModel
+   prfmodel.models.prf.DelayedNormGaussian2DPRFModel
+   prfmodel.models.prf.DelayedNormPRFModel
+   prfmodel.models.prf.DivNormGaussian2DPRFModel
+   prfmodel.models.prf.DivNormPRFModel
+   prfmodel.models.prf.DoG2DPRFModel
+   prfmodel.models.prf.Gaussian1DPRFModel
+   prfmodel.models.prf.Gaussian1DPRFTuning
+   prfmodel.models.prf.Gaussian2DCSSPRFModel
+   prfmodel.models.prf.Gaussian2DCSTPRFModel
+   prfmodel.models.prf.Gaussian2DPRFModel
+   prfmodel.models.prf.Gaussian2DPRFTuning
+   prfmodel.models.prf.PRFStimulusEncoder
+
+
+Functions
+---------
+
+.. toctree::
+   :hidden:
+
+   encode_prf_response </autoapi/prfmodel/models/prf/encode_prf_response>
+   init_css_from_gaussian </autoapi/prfmodel/models/prf/init_css_from_gaussian>
+   init_cst_from_gaussian </autoapi/prfmodel/models/prf/init_cst_from_gaussian>
+   init_delayed_norm_from_gaussian </autoapi/prfmodel/models/prf/init_delayed_norm_from_gaussian>
+   init_div_norm_from_dog_css </autoapi/prfmodel/models/prf/init_div_norm_from_dog_css>
+   init_dog_from_gaussian </autoapi/prfmodel/models/prf/init_dog_from_gaussian>
+   predict_gaussian_response </autoapi/prfmodel/models/prf/predict_gaussian_response>
+
+.. autoapisummary::
+
+   prfmodel.models.prf.encode_prf_response
+   prfmodel.models.prf.init_css_from_gaussian
+   prfmodel.models.prf.init_cst_from_gaussian
+   prfmodel.models.prf.init_delayed_norm_from_gaussian
+   prfmodel.models.prf.init_div_norm_from_dog_css
+   prfmodel.models.prf.init_dog_from_gaussian
+   prfmodel.models.prf.predict_gaussian_response
+
+

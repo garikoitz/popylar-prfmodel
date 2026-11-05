@@ -1,0 +1,106 @@
+prfmodel.fitters.LeastSquaresFitter
+===================================
+
+.. py:class:: prfmodel.fitters.LeastSquaresFitter(model: prfmodel.models.base.BaseCanonical, stimulus: prfmodel.stimuli.Stimulus, dtype: str | None = None)
+
+   Fit population receptive field models with least squares.
+
+   Estimates model parameters by minimizing the sum of least squares between model predictions and data.
+
+   :param model: A model instance that can be fit to data.
+                 The model must implement the :meth:`~prfmodel.models.base.BaseCanonical.__call__` method to make
+                 predictions that can be compared to data.
+   :type model: BaseCanonical
+   :param stimulus: Stimulus object.
+   :type stimulus: Stimulus
+   :param dtype: The dtype of the prediction result. If `None` (the default), uses the dtype from
+                 :func:`prfmodel.utils.get_dtype`.
+   :type dtype: str, optional
+
+   :Warns: **ResolutionMismatchWarning** -- When an impulse submodel has an explicit resolution that differs from the frame duration of the
+           stimulus. See :meth:`~prfmodel.models.base.BaseCanonical.check_stimulus`.
+
+   .. rubric:: Notes
+
+   This fitter optimizes one or more slope parameters (and optionally an intercept) by estimating a general linear
+   model between model predictions and data. Typically, these are baseline and amplitude parameters. When multiple
+   slope names are given, each basis function is isolated by setting that slope to 1.0 and all others to 0.0, and
+   the resulting design matrix is solved with least squares in one shot.
+
+   Internally, each data batch is solved for all of its units at once with a batched singular value
+   decomposition, which gives the same coefficients as :func:`numpy.linalg.lstsq` per unit, including the
+   minimum-norm solution when a unit's design matrix is rank deficient.
+
+   .. rubric:: Examples
+
+   Fit a 2D Gaussian population receptive field model.
+
+   >>> import numpy as np
+   >>> import pandas as pd
+   >>> from prfmodel.examples import load_2d_prf_bar_stimulus
+   >>> from prfmodel.models.prf import Gaussian2DPRFModel
+   >>> stimulus = load_2d_prf_bar_stimulus()
+   >>> # Only fit response and temporal model
+   >>> model = Gaussian2DPRFModel(impulse_model=None)
+   >>> # Define init parameters
+   >>> params_init = pd.DataFrame({
+   ...     "mu_x": [0.0], "mu_y": [0.0], "sigma": [1.0],
+   ...     "baseline": [0.0], "amplitude": [0.0],
+   ... })
+   >>> # Create dummy data for a single unit
+   >>> data = np.random.default_rng(0).standard_normal((1, stimulus.design.shape[0]))
+   >>> fitter = LeastSquaresFitter(model=model, stimulus=stimulus)
+   >>> # Fit model parameters
+   >>> history, params_ls = fitter.fit(
+   ...     data,
+   ...     params_init,
+   ...     slope_name="amplitude",
+   ...     intercept_name="baseline",
+   ... )
+   >>> print(list(params_ls.columns))
+   ['mu_x', 'mu_y', 'sigma', 'baseline', 'amplitude']
+
+
+   .. py:method:: fit(data: prfmodel.typing.Tensor, parameters: pandas.DataFrame, slope_name: str | list[str], intercept_name: str | None = None, batch_size: int | None = None, regressors: pandas.DataFrame | None = None) -> tuple[LeastSquaresHistory, pandas.DataFrame]
+
+      Fit a population receptive field model to target data.
+
+      :param data: Target data to fit the model to. Must have shape `(num_units, num_frames)`, where `num_units` is the
+                   number of units for which parameters are estimated and `num_frames` is the number of time steps.
+      :type data: :data:`prfmodel.typing.Tensor`
+      :param parameters: Dataframe with model parameters. Columns must contain different model parameters and
+                         rows parameter values for each unit in `data`.
+      :type parameters: pandas.DataFrame
+      :param slope_name: The name(s) of the parameter(s) that will be the estimated slope(s). Must refer to column(s) within
+                         `parameters`.
+      :type slope_name: str or list of str
+      :param intercept_name: The name of the parameter that will be the estimated intercept. Must refer to a column within `parameters`.
+                             If `None`, no intercept is estimated.
+      :type intercept_name: str, optional
+      :param batch_size: Number of data batches to fit at the same time. If `None` (the default), all batches are fit at once.
+      :type batch_size: int, optional
+      :param regressors: Regressor design data. Required when the model has a ``regressors_model`` configured.
+                         A single data frame with shape `(num_frames, num_regressors)` whose columns cover the names required
+                         by every configured regressor model; extra columns are ignored.
+      :type regressors: pandas.DataFrame, optional
+
+      :returns: * *LeastSquaresHistory* -- A history object that contains a dict with the key `loss` and the residual sum of squares
+                  for each data batch.
+                * *pandas.DataFrame* -- A dataframe with final model parameters. The slope and intercept parameters are NaN for units that are
+                  excluded from the fit (see Warns). Other parameters are returned unchanged.
+
+      :raises ShapeError: If `data` does not have two dimensions, if its number of rows does not match the number of rows in
+          `parameters`, or if its number of columns does not match the number of frames in the model prediction.
+      :raises ValueError: If a name in `slope_name` is not a parameter of the model or not a column in `parameters`.
+
+      :Warns: **InvalidUnitsWarning** -- When the time series of some units in `data` are constant or contain NaN or infinite values. These
+              units are excluded from the fit and their estimated parameters and losses are NaN.
+
+
+
+   .. py:property:: dtype
+      :type: str
+
+
+      The dtype that is used during fitting.
+

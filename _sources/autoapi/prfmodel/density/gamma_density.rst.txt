@@ -1,0 +1,51 @@
+prfmodel.density.gamma_density
+==============================
+
+.. py:function:: prfmodel.density.gamma_density(value: prfmodel.typing.Tensor, shape: prfmodel.typing.Tensor, scale: prfmodel.typing.Tensor, norm: bool = True) -> prfmodel.typing.Tensor
+
+   Calculate the density of a gamma distribution.
+
+   The distribution uses a shape and scale parameterization.
+
+   :param value: The values at which to evaluate the gamma distribution. Must be scalar or with shape ``(1, m)``.
+                 Values at or below zero are allowed and give a density of zero.
+   :type value: :data:`prfmodel.typing.Tensor`
+   :param shape: The shape parameter. Must be scalar or with shape ``(n, 1)``.
+   :type shape: :data:`prfmodel.typing.Tensor`
+   :param scale: The scale parameter. Must be scalar or with shape ``(n, 1)``.
+   :type scale: :data:`prfmodel.typing.Tensor`
+   :param norm: Whether to compute the normalized density.
+   :type norm: bool, default=True
+
+   :returns: The density of the gamma distribution at `value` as a scalar or with shape (n, m).
+   :rtype: :data:`prfmodel.typing.Tensor`
+
+   .. rubric:: Notes
+
+   The unnormalized density of the gamma distribution
+   with `shape` :math:`\alpha` and `scale` :math:`\theta` is given by:
+
+   .. math::
+
+       f(x) = x^{\mathtt{\alpha} - 1} e^{-x / \mathtt{\theta}}.
+
+   When `norm=True`, the density is multiplied with a normalizing constant:
+
+   .. math::
+
+       f_{norm} = \frac{1}{\mathtt{\theta}^{\mathtt{\alpha}} \Gamma(\mathtt{\alpha})} * f(x).
+
+   The density is zero at and below values of zero, matching `scipy.stats.gamma.pdf`. Negative `shape` returns a
+   finite but meaningless number whereas negative `scale`returns NaN instead of raising an error.
+
+   .. rubric:: Examples
+
+   >>> import numpy as np
+   >>> from prfmodel.density import gamma_density
+   >>> t = np.array([[1.0, 2.0, 3.0]])   # shape (1, 3)
+   >>> shape = np.array([[2.0], [4.0]])   # shape (2, 1)
+   >>> scale = np.array([[1.0], [1.0]])    # shape (2, 1)
+   >>> dens = gamma_density(t, shape, scale)
+   >>> print(dens.shape)
+   (2, 3)
+

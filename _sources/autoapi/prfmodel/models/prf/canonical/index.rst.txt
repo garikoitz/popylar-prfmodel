@@ -1,0 +1,34 @@
+prfmodel.models.prf.canonical
+=============================
+
+.. py:module:: prfmodel.models.prf.canonical
+
+.. autoapi-nested-parse::
+
+   Canonical population receptive field (pRF) models.
+
+   This module contains models that combine multiple exchangeable submodels in a way that is considered "canonical".
+
+
+
+Classes
+-------
+
+.. toctree::
+   :hidden:
+
+   CSTPRFModel </autoapi/prfmodel/models/prf/canonical/CSTPRFModel>
+   CanonicalPRFModel </autoapi/prfmodel/models/prf/canonical/CanonicalPRFModel>
+   CenterSurroundPRFModel </autoapi/prfmodel/models/prf/canonical/CenterSurroundPRFModel>
+   DelayedNormPRFModel </autoapi/prfmodel/models/prf/canonical/DelayedNormPRFModel>
+   DivNormPRFModel </autoapi/prfmodel/models/prf/canonical/DivNormPRFModel>
+
+.. autoapisummary::
+
+   prfmodel.models.prf.canonical.CSTPRFModel
+   prfmodel.models.prf.canonical.CanonicalPRFModel
+   prfmodel.models.prf.canonical.CenterSurroundPRFModel
+   prfmodel.models.prf.canonical.DelayedNormPRFModel
+   prfmodel.models.prf.canonical.DivNormPRFModel
+
+

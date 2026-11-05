@@ -1,0 +1,171 @@
+prfmodel.models.prf.canonical.DelayedNormPRFModel
+=================================================
+
+.. py:class:: prfmodel.models.prf.canonical.DelayedNormPRFModel(prf_model: prfmodel.models.base.BaseTuning, encoding_model: prfmodel.models.base.BaseStimulusEncoder | type[prfmodel.models.base.BaseStimulusEncoder] = PRFStimulusEncoder, impulse_model: prfmodel.impulse.base.BaseImpulse | type[prfmodel.impulse.base.BaseImpulse] | None = DerivativeTwoGammaImpulse, scaling_model: prfmodel.scaling.base.BaseScaling | type[prfmodel.scaling.base.BaseScaling] | None = BaselineAmplitude, regressors_model: prfmodel.regressors.base.BaseRegressors | list[prfmodel.regressors.base.BaseRegressors] | None = None)
+
+
+
+   Delayed gain normalization population receptive field (pRF) model.
+
+   Combines a pRF tuning model, stimulus encoding, and an impulse response (h₁) with an
+   inline delayed normalization stage (h₂ = exponential decay) to form a complete DGN model.
+   The computation and all DGN-specific parameters (``n``, ``dispersion_normalization``, ``sigma_saturation``,
+   ``amplitude``, ``baseline``) live in this class; pRF tuning-specific parameters come from
+   ``prf_model``.
+
+   :param prf_model: A population receptive field tuning model instance.
+   :type prf_model: BaseTuning
+   :param encoding_model: An stimulus encoding model class or instance. Model classes will be instantiated during initialization.
+                          The default creates a :class:`~prfmodel.models.prf.PRFStimulusEncoder` instance.
+   :type encoding_model: BaseStimulusEncoder or type, default=PRFStimulusEncoder
+   :param impulse_model: An impulse model class or instance. Model classes will be instantiated during
+                         initialization. The default creates a :class:`~prfmodel.impulse.DerivativeTwoGammaImpulse`
+                         instance with default values. Impulse models without an explicit `resolution` are sampled at the
+                         frame duration of the stimulus.
+   :type impulse_model: BaseImpulse or type or None, default=DerivativeTwoGammaImpulse, optional
+   :param scaling_model: Scaling model applied to R(t) after the nonlinear stage.  Model classes are
+                         instantiated during initialisation.  Set to ``None`` to return R(t) unscaled.
+   :type scaling_model: BaseScaling or type or None, default=BaselineAmplitude
+   :param regressors_model: A regressor model instance, a list of regressor model instances, or `None`. When a list is
+                            provided, it is wrapped in a :class:`~prfmodel.regressors.RegressorsList` and its contributions
+                            are summed. The regressor contribution is added after the scaling model.
+   :type regressors_model: BaseRegressors or list of BaseRegressors or RegressorsList or None, default=None, optional
+
+   .. rubric:: Notes
+
+   The delayed gain normalization model follows [1]_:
+
+     1. **Linear** — pRF tuning profile encoded with the stimulus design, then convolved with
+        the impulse response h₁ to produce L(t).
+     2. **Normalization** — L(t) is convolved with h₂ = exp(-t/τ₂) to produce g(t).
+     3. **Nonlinear** — ``R(t) = |L(t)|ⁿ / (sigmaⁿ + |g(t)|ⁿ)``.
+     4. **Output** — ``amplitude * R(t) + baseline``.
+
+   Paper-recommended starting values (Fig. 2): ``n=2``, ``dispersion_normalization=0.1``,
+   ``sigma_saturation=1``, ``delay=0.05`` (τ₁), ``weight_deriv=0``.
+
+   .. rubric:: References
+
+   .. [1] Zhou J., Benson N.C., Kay K., Winawer J. (2019). Predicting neuronal dynamics with a
+       delayed gain control model. *PLOS Computational Biology*, 15(9).
+       https://doi.org/10.1371/journal.pcbi.1007484
+
+
+   .. py:method:: __call__(stimulus: S, parameters: pandas.DataFrame, regressors: pandas.DataFrame | None = None, dtype: str | None = None) -> numpy.ndarray
+
+      Predict a canonical model response to a stimulus.
+
+      This is the public entry point; subclasses implement :meth:`call` instead. Use :meth:`call` when a
+      backend tensor is required, for example inside a fitter or another model's :meth:`call`.
+
+      :param stimulus: Stimulus object.
+      :type stimulus: Stimulus
+      :param parameters: Dataframe with columns containing different model parameters and rows containing parameter values
+                         for different units.
+      :type parameters: pandas.DataFrame
+      :param regressors: Regressor design data. Required when the canonical model has a regressors model configured.
+                         A single data frame with shape `(num_frames, num_regressors)` whose columns cover the names
+                         required by every configured regressor model. Extra columns are ignored.
+      :type regressors: pandas.DataFrame, optional
+      :param dtype: The dtype of the prediction result. If `None` (the default), uses the dtype from
+                    :func:`prfmodel.utils.get_dtype`.
+      :type dtype: str, optional
+
+      :returns: The predicted model response with shape `(num_units, num_frames)` and dtype `dtype`.
+      :rtype: numpy.ndarray
+
+      :raises ValueError: If `parameters` is missing one or more of :attr:`parameter_names`.
+
+      :Warns: **ResolutionMismatchWarning** -- When an impulse submodel has an explicit resolution that differs from the frame duration of the
+              stimulus. See :meth:`~prfmodel.models.base.BaseCanonical.check_stimulus`.
+
+
+
+   .. py:method:: call(stimulus: prfmodel.stimuli.PRFStimulusTensors, parameters: prfmodel.utils.TensorFrame, regressors: prfmodel.utils.TensorFrame | None = None) -> prfmodel.typing.Tensor
+
+      Predict the delayed gain normalization model response.
+
+      :param stimulus: Tensor-holding population receptive field stimulus object,
+                       from :meth:`~prfmodel.stimuli.PRFStimulus.to_tensors`.
+      :type stimulus: PRFStimulusTensors
+      :param parameters: Model parameters as tensors, supporting the same column selection as a :class:`pandas.DataFrame`.
+      :type parameters: TensorFrame
+      :param regressors: Regressor design columns as tensors, supporting the same column selection as a :class:`pandas.DataFrame`.
+      :type regressors: TensorFrame or None, optional
+
+      :returns: The predicted model response with shape `(num_units, num_frames)` and dtype `dtype`.
+      :rtype: Tensor
+
+
+
+   .. py:method:: check_parameter_names(parameters: pandas.DataFrame) -> None
+
+      Check that required parameter names are supplied.
+
+      :param parameters: Dataframe with columns containing different model parameters and rows containing parameter values
+                         for different units.
+      :type parameters: pandas.DataFrame
+
+      :raises ValueError: When a parameter name in the :attr:`parameter_names` attribute is not a column in ``parameters``.
+
+
+
+   .. py:method:: check_parameter_values(parameters: pandas.DataFrame) -> None
+
+      Check that the parameter values lie inside the domain the model is defined on.
+
+      :param parameters: Dataframe with columns containing different model parameters and rows containing parameter values
+                         for different units.
+      :type parameters: pandas.DataFrame
+
+      :raises ValueError: When a parameter that must be ``> 0`` is zero or negative.
+
+
+
+   .. py:method:: check_stimulus(stimulus: S) -> None
+
+      Check that the impulse submodels are sampled at the frame duration of the stimulus.
+
+      Impulse submodels without an explicit :attr:`~prfmodel.impulse.base.BaseImpulse.resolution` are
+      sampled at the frame duration of the stimulus in :meth:`call` and always pass this check. Stimuli without a
+      frame duration (e.g., :class:`~prfmodel.stimuli.CFStimulus`) are not checked.
+
+      :param stimulus: Stimulus object.
+      :type stimulus: Stimulus
+
+      :Warns: **ResolutionMismatchWarning** -- When an impulse submodel has an explicit resolution that differs from the frame duration of
+              `stimulus`.
+
+
+
+   .. py:method:: get_consumed_parameter_names(parameters: pandas.DataFrame) -> list[str]
+
+      Return the parameter names this model and its submodels read from ``parameters``.
+
+      :param parameters: Dataframe with columns containing different model parameters and rows containing parameter values
+                         for different units.
+      :type parameters: pandas.DataFrame
+
+      :returns: Names of the parameters this model and its submodels read from ``parameters``.
+      :rtype: list of str
+
+
+
+   .. py:property:: models
+      :type: dict[str, ModelProtocol | None]
+
+
+      A dictionary with the named submodels.
+
+      :param models: Named submodels.
+      :type models: dict of ModelProtocol
+
+      :raises TypeError: When a submodel does not inherit from :class:`ModelProtocol`.
+
+
+   .. py:property:: parameter_names
+      :type: list[str]
+
+
+      A list with names of unique parameters that are used by the submodels.
+

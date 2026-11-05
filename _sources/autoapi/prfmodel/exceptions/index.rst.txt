@@ -1,0 +1,32 @@
+prfmodel.exceptions
+===================
+
+.. py:module:: prfmodel.exceptions
+
+.. autoapi-nested-parse::
+
+   Exceptions and warnings.
+
+   This module contains exceptions and warnings that are mostly for internal use.
+
+
+
+Exceptions
+----------
+
+.. toctree::
+   :hidden:
+
+   InvalidUnitsWarning </autoapi/prfmodel/exceptions/InvalidUnitsWarning>
+   ResolutionMismatchWarning </autoapi/prfmodel/exceptions/ResolutionMismatchWarning>
+   ShapeError </autoapi/prfmodel/exceptions/ShapeError>
+   ShapeMismatchError </autoapi/prfmodel/exceptions/ShapeMismatchError>
+
+.. autoapisummary::
+
+   prfmodel.exceptions.InvalidUnitsWarning
+   prfmodel.exceptions.ResolutionMismatchWarning
+   prfmodel.exceptions.ShapeError
+   prfmodel.exceptions.ShapeMismatchError
+
+

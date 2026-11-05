@@ -1,0 +1,18 @@
+prfmodel.utils.get_dtype
+========================
+
+.. py:function:: prfmodel.utils.get_dtype(dtype: str | None) -> str
+
+   Get the (default) dtype.
+
+   Utility function to pass through a dtype or get the default dtype set by :func:`keras.config.floatx()`.
+
+   :param dtype: The dtype to pass through. If `None`, returns :func:`keras.config.floatx()`.
+   :type dtype: str or None
+
+   :returns: The dtype.
+   :rtype: str
+
+   :raises ValueError: When `dtype` is not of the values defined in :const:`DTYPES`. Keras' ``bfloat16`` is currently not supported,
+       so this also raises when `keras.config.floatx() == 'bfloat16'`.
+

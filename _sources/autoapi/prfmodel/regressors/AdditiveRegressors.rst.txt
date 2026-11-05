@@ -1,0 +1,153 @@
+prfmodel.regressors.AdditiveRegressors
+======================================
+
+.. py:class:: prfmodel.regressors.AdditiveRegressors(names: list[str])
+
+
+
+   Additive regressor model.
+
+   Adds a linear combination of regressors directly to the model prediction without further transformation. Suitable
+   for nuisance regressors such as motion parameters, drift terms, or physiological signals that are already in the
+   space of the predicted response.
+
+   Given a design matrix with columns :math:`x_k(t)` and per-unit beta weights :math:`\beta_k`, the model prediction
+   is:
+
+   .. math::
+
+       y(t) = \sum_k \beta_k \, x_k(t).
+
+   The design is supplied at call time as a :class:`pandas.DataFrame`. The model selects the columns it needs by
+   name, so column order is unimportant and extra columns are silently ignored.
+
+   :param names: Names of the regressors. Each name must appear as a column in the ``regressors`` data frame supplied to the
+                 :meth:`__call__` method. Parameter names are derived as ``"beta_<name>"`` for each name.
+   :type names: list of str
+
+   .. rubric:: Examples
+
+   >>> import numpy as np
+   >>> import pandas as pd
+   >>> regressors_model = AdditiveRegressors(names=["motion_x", "motion_y"])
+   >>> regressors_model.parameter_names
+   ['beta_motion_x', 'beta_motion_y']
+   >>> design = pd.DataFrame({"motion_x": np.ones(10), "motion_y": np.ones(10)})
+   >>> params = pd.DataFrame({"beta_motion_x": [1.0, 2.0], "beta_motion_y": [-1.0, 0.5]})
+   >>> resp = regressors_model(design, params)
+   >>> print(resp.shape)
+   (2, 10)
+
+
+   .. py:method:: __call__(regressors: pandas.DataFrame, parameters: pandas.DataFrame, dtype: str | None = None) -> numpy.ndarray
+
+      Compute the additive regressor contribution.
+
+      This is the public entry point; subclasses implement :meth:`call` instead. Use :meth:`call` when a
+      backend tensor is required.
+
+      :param regressors: Regressor design with shape `(num_frames, num_regressors)`. Must contain a column for each name in
+                         :attr:`names`; extra columns are ignored.
+      :type regressors: pandas.DataFrame
+      :param parameters: Dataframe with columns containing different model parameters and rows containing parameter values
+                         for different units.
+      :type parameters: pandas.DataFrame
+      :param dtype: The dtype of the prediction result. If `None` (the default), uses the dtype from
+                    :func:`prfmodel.utils.get_dtype`.
+      :type dtype: str, optional
+
+      :returns: The predicted model response with shape `(num_units, num_frames)` and dtype `dtype`.
+      :rtype: numpy.ndarray
+
+      :raises ValueError: If `parameters` is missing one or more of :attr:`parameter_names`.
+
+
+
+   .. py:method:: call(regressors: prfmodel.utils.TensorFrame, parameters: prfmodel.utils.TensorFrame) -> prfmodel.typing.Tensor
+
+      Compute the additive regressor prediction.
+
+      :param regressors: Regressor design columns as tensors, supporting the same column selection as a :class:`pandas.DataFrame`.
+      :type regressors: TensorFrame or None, optional
+      :param parameters: Model parameters as tensors, supporting the same column selection as a :class:`pandas.DataFrame`.
+      :type parameters: TensorFrame
+
+      :returns: The predicted model response with shape `(num_units, num_frames)` and dtype `dtype`.
+      :rtype: Tensor
+
+
+
+   .. py:method:: check_parameter_names(parameters: pandas.DataFrame) -> None
+
+      Check that required parameter names are supplied.
+
+      :param parameters: Dataframe with columns containing different model parameters and rows containing parameter values
+                         for different units.
+      :type parameters: pandas.DataFrame
+
+      :raises ValueError: When a parameter name in the :attr:`parameter_names` attribute is not a column in ``parameters``.
+
+
+
+   .. py:method:: check_parameter_values(parameters: pandas.DataFrame) -> None
+
+      Check that the parameter values lie inside the domain the model is defined on.
+
+      :param parameters: Dataframe with columns containing different model parameters and rows containing parameter values
+                         for different units.
+      :type parameters: pandas.DataFrame
+
+      :raises ValueError: When a parameter that must be ``> 0`` is zero or negative.
+
+
+
+   .. py:method:: check_regressor_names(regressors: pandas.DataFrame) -> None
+
+      Check that required columns are supplied in the regressor design.
+
+      :param regressors: Regressor design with shape `(num_frames, num_regressors)`. Must contain a column for each name in
+                         :attr:`names`; extra columns are ignored.
+      :type regressors: pandas.DataFrame
+
+      :raises ValueError: When a column is missing in the regressor design.
+
+
+
+   .. py:method:: get_consumed_parameter_names(parameters: pandas.DataFrame) -> list[str]
+
+      Return the parameter names this model and its submodels read from ``parameters``.
+
+      :param parameters: Dataframe with columns containing different model parameters and rows containing parameter values
+                         for different units.
+      :type parameters: pandas.DataFrame
+
+      :returns: Names of the parameters this model and its submodels read from ``parameters``.
+      :rtype: list of str
+
+
+
+   .. py:property:: models
+      :type: dict[str, ModelProtocol | None]
+
+
+      A dictionary with the named submodels.
+
+      :param models: Named submodels.
+      :type models: dict of ModelProtocol
+
+      :raises TypeError: When a submodel does not inherit from :class:`ModelProtocol`.
+
+
+   .. py:property:: parameter_names
+      :type: list[str]
+
+
+      A list with names of unique parameters that are used by the submodels.
+
+
+   .. py:property:: regressor_names
+      :type: list[str]
+
+
+      Columns this model reads from the regressor design.
+

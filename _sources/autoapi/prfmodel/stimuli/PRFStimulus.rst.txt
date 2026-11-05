@@ -1,0 +1,179 @@
+prfmodel.stimuli.PRFStimulus
+============================
+
+.. py:class:: prfmodel.stimuli.PRFStimulus
+
+
+
+   Container for a population receptive field stimulus design and its associated grid.
+
+   :param design: The stimulus design array containing the stimulus value in one or more dimensions over different time frames.
+                  The first axis is assumed to be time frames. Additional axes represent design dimensions.
+   :type design: numpy.ndarray
+   :param grid: The coordinate system of the design. The last axis is the number of design dimensions
+                excluding the time frame dimension. The shape excluding the last axis must match the shape
+                of the design excluding the first axis.
+
+                The order of the last axis must follow the array axes of the design: `grid[..., i]` holds the
+                coordinate that varies along design axis `i + 1`. For a 2D stimulus with a design of shape
+                `(num_frames, height, width)` this means `grid[..., 0]` is the vertical (`y`) coordinate and
+                `grid[..., 1]` is the horizontal (`x`) coordinate. See Notes.
+   :type grid: numpy.ndarray
+   :param frame_duration: The duration of one time frame (in seconds), e.g., the repetition time (TR) in fMRI. Must be given
+                          as a keyword argument. Canonical models sample their impulse models at this interval unless the
+                          impulse model has an explicit `resolution`. See :doc:`Important details </important_details>`.
+   :type frame_duration: float
+   :param dimension_labels: Names of the grid dimensions (e.g., `["y", "x"]`). If given, the number of labels must match the last grid
+                            axis. Label `i` names the coordinate stored in `grid[..., i]`.
+   :type dimension_labels: Sequence[str] or None, optional
+
+   :raises ShapeError: If the number of grid axes (excluding the last) does not match the last grid dimension.
+   :raises ShapeMismatchError: If the design and grid dimensions do not match.
+   :raises ValueError: If the number of dimension labels does not match the last grid dimension or if `frame_duration` is not
+       positive.
+
+   .. rubric:: Notes
+
+   The shapes of the design and grid must match according to `design.shape[1:] == grid.shape[:-1]`.
+   That is, all design dimensions but the first must have the same size as the grid
+   dimensions excluding the last grid dimension.
+
+   **Coordinate order.** The last grid axis is ordered to match the design's array axes, so
+   `grid[..., i]` is the coordinate that varies along design axis `i + 1`. Because NumPy uses
+   row-major order, the first design axis after time is rows (height), which means the vertical
+   (`y`) coordinate comes first and the horizontal (`x`) coordinate second.
+
+   This is why response models read their centre parameters in the same order, for example
+   :class:`~prfmodel.models.prf.Gaussian2DPRFTuning` pairs `mu_y` with `grid[..., 0]` and `mu_x`
+   with `grid[..., 1]`. Building a grid with `numpy.meshgrid` therefore requires stacking `yv`
+   before `xv`, as in the example below.
+
+   .. rubric:: Examples
+
+   Create a population receptive field stimulus on a 2D grid.
+
+   >>> import numpy as np
+   >>> # Deliberately different height and width so the axis order is unambiguous
+   >>> num_frames, height, width = 10, 8, 16
+   >>> design = np.ones((num_frames, height, width))  # time first, then rows, then columns
+   >>> pixel_size = 0.5
+   >>> x = (np.arange(width) - (width - 1) / 2) * pixel_size
+   >>> y = (np.arange(height) - (height - 1) / 2) * pixel_size
+   >>> xv, yv = np.meshgrid(x, y)
+   >>> # y comes first because design axis 1 is the row (height) axis
+   >>> grid = np.stack((yv, xv), axis=-1)  # shape (height, width, 2)
+   >>> # The (y, x) coordinates of the bottom-left corner:
+   >>> grid[0, 0, :]
+   array([-1.75, -3.75])
+   >>> # The (y, x) coordinates of the top-right corner:
+   >>> grid[7, 15, :]
+   array([1.75, 3.75])
+   >>> # Moving along the last column changes x only:
+   >>> grid[0, 15, :]
+   array([-1.75,  3.75])
+   >>> stimulus = PRFStimulus(design=design, grid=grid, frame_duration=1.5, dimension_labels=["y", "x"])
+   >>> print(stimulus)
+   PRFStimulus(design=array[10, 8, 16], grid=array[8, 16, 2], frame_duration=1.5, dimension_labels=['y', 'x'])
+
+
+   .. py:method:: __repr__() -> str
+
+      Create a round-trippable string representation of the stimulus object.
+
+
+
+   .. py:method:: __str__() -> str
+
+      Create a human-readable string representation of the stimulus object.
+
+
+
+   .. py:method:: create_2d_bar_stimulus(num_frames: int = 100, width: int = 128, height: int = 128, bar_width: int = 20, direction: str = 'horizontal', pixel_size: float = 0.05, *, frame_duration: float) -> PRFStimulus
+      :classmethod:
+
+
+      Create a population receptive field bar stimulus that moves across a 2D screen.
+
+      The stimulus starts and ends moving just outside the screen.
+
+      :param num_frames: Number of time frames in the stimulus.
+      :type num_frames: int, optional
+      :param width: Width of the stimulus grid (in pixels).
+      :type width: int, optional
+      :param height: Height of the stimulus grid (in pixels).
+      :type height: int, optional
+      :param bar_width: Width of the moving bar (in pixels).
+      :type bar_width: int, optional
+      :param direction: Direction in which the bar moves.
+      :type direction: {"horizontal", "vertical"}, optional
+      :param pixel_size: Size of a pixel in spatial units.
+      :type pixel_size: float, optional
+      :param frame_duration: The duration of one time frame (in seconds), e.g., the repetition time (TR) in fMRI. Must be given
+                             as a keyword argument. Canonical models sample their impulse models at this interval unless the
+                             impulse model has an explicit `resolution`. See :doc:`Important details </important_details>`.
+      :type frame_duration: float
+
+      :returns: A stimulus instance with the generated design and grid.
+      :rtype: PRFStimulus
+
+      :raises ValueError: If `direction` is not "horizontal" or "vertical".
+
+      .. rubric:: Notes
+
+      The `grid` holds **visual field** coordinates in degrees of visual angle. The horizontal
+      coordinate increases across the design columns: `grid[0, 0, 1]` is the smallest (most
+      negative) `x` and `grid[0, -1, 1]` the largest. The vertical coordinate increases down the
+      rows, so the first row is the lower edge of the visual field.
+
+      Concretely, a bar drawn in the leftmost columns of `design` falls in the **left** visual
+      hemifield (negative `mu_x`), and a bar in the rightmost columns falls in the right hemifield
+      (positive `mu_x`). A ``direction="horizontal"`` bar sweeps from left to right through the
+      visual field (increasing `mu_x`).
+
+      This is the same convention as the packaged stimulus returned by
+      :func:`~prfmodel.examples.load_2d_prf_bar_stimulus`.
+
+      .. rubric:: Examples
+
+      >>> stimulus = PRFStimulus.create_2d_bar_stimulus(num_frames=200, frame_duration=1.0)
+      >>> print(stimulus)  # doctest: +NORMALIZE_WHITESPACE
+      PRFStimulus(design=array[200, 128, 128], grid=array[128, 128, 2], frame_duration=1.0,
+                  dimension_labels=['y', 'x'])
+
+      Both coordinates increase with their design axis, the horizontal one across the columns and
+      the vertical one down the rows:
+
+      >>> stimulus = PRFStimulus.create_2d_bar_stimulus(width=5, height=3, pixel_size=1.0, frame_duration=1.0)
+      >>> stimulus.grid[..., 1]  # x, constant down each column
+      array([[-2., -1.,  0.,  1.,  2.],
+             [-2., -1.,  0.,  1.,  2.],
+             [-2., -1.,  0.,  1.,  2.]])
+      >>> stimulus.grid[..., 0]  # y, constant across each row
+      array([[-1., -1., -1., -1., -1.],
+             [ 0.,  0.,  0.,  0.,  0.],
+             [ 1.,  1.,  1.,  1.,  1.]])
+
+
+
+   .. py:method:: to_tensors(dtype: str | None = None) -> PRFStimulusTensors
+
+      Convert the stimulus arrays into backend tensors.
+
+      :param dtype: The dtype to convert the stimulus arrays to. If `None` (the default), uses the dtype from
+                    :func:`prfmodel.utils.get_dtype`.
+      :type dtype: str, optional
+
+      :returns: The stimulus arrays as tensors.
+      :rtype: PRFStimulusTensors
+
+      .. rubric:: Examples
+
+      >>> from prfmodel.examples import load_2d_prf_bar_stimulus
+      >>> stimulus = load_2d_prf_bar_stimulus()
+      >>> tensors = stimulus.to_tensors("float32")
+      >>> print(tuple(tensors.design.shape) == stimulus.design.shape)
+      True
+      >>> print(tuple(tensors.grid.shape) == stimulus.grid.shape)
+      True
+
+
